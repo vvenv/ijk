@@ -1,7 +1,8 @@
 {
   "name": "@ijkjs/ijk",
-  "private": true,
   "version": "0.0.0",
+  "description": "A simple, fast, and lightweight template engine for Node.js and browsers.",
+  "license": "MIT",
   "type": "module",
   "files": [
     "dist",
