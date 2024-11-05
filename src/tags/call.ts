@@ -2,26 +2,29 @@ import { SMP } from '../smp';
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
+import { parseActualParams } from '../util/parse-actual-params';
 
 const CALL = 'call';
 const ENDCALL = 'endcall';
 const RE = /^(?:call\s+(.+))|((?:end|\/)call)$/;
 
 /**
- * @example
- * - {{ call my_macro "foo" "bar" }}
+ * @example {{ call my_macro "foo" "bar" }}...{{ endcall }}
+ * @todo {{ call my_macro(foo | my_filter, bar) }}...{{ endcall }}
  */
 export class CallTag extends Tag {
   parse(match: RegExpExecArray, ast: AST): void | false {
     const [, statement, end] = match[1].match(RE) ?? [];
 
     if (end) {
-      if (ast.getFirstTag()?.name === CALL) {
-        ast.end({
-          name: ENDCALL,
-          startIndex: match.index,
-          endIndex: match.index + match[0].length,
-        });
+      const tag = {
+        name: ENDCALL,
+        startIndex: match.index,
+        endIndex: match.index + match[0].length,
+      };
+
+      if (ast.assertFirstTag(CALL, tag)) {
+        ast.end(tag);
 
         return;
       }
@@ -54,7 +57,14 @@ export class CallTag extends Tag {
     }
 
     if (tag.name === ENDCALL) {
-      return;
+      return this.renderEndcall(
+        template,
+        tag as EndTag,
+        context,
+        ast,
+        out,
+        smp,
+      );
     }
 
     return false;
@@ -68,34 +78,28 @@ export class CallTag extends Tag {
     out: Out,
     smp: SMP,
   ) {
-    const affix = `${tag.node.level}_${tag.node.index}`;
-    const { name, params } = this.parseStatement(tag.statement!);
-    out.pushLine(`const _m_${affix} = (${params.join(',')})=>{`);
-    if (params.length) {
-      out.pushLine(`const ${context}_m_${affix}={`, `...${context},`);
-      params.forEach((param) => {
-        out.pushLine(`${param},`);
-      });
-      out.pushLine(`};`);
-    }
-    this.parser.renderNodeContent(
-      template,
-      tag,
-      `${context}_m_${affix}`,
-      ast,
-      out,
-      smp,
-    );
-    out.pushLine('return "";', '};');
-    out.pushLine(`${context}.${name} = _m_${affix};`);
+    const { name, params } = this.parseStatement(tag.statement!, context);
+    out.pushLine(`${context}.${name}(${params.join(',')}, () => {`);
+    this.parser.renderNodeContent(template, tag, context, ast, out, smp);
   }
 
-  private parseStatement(statement: string) {
+  private renderEndcall(
+    _template: string,
+    _tag: EndTag,
+    _context: string,
+    _ast: AST,
+    out: Out,
+    _smp: SMP,
+  ) {
+    out.pushLine('});');
+  }
+
+  private parseStatement(statement: string, context: string) {
     let [, name, params] = statement.match(/^(\w+?)(?:\s+(.+?))?$/) ?? [];
 
     return {
       name,
-      params: params ? params.split(/\s+/) : [],
+      params: parseActualParams(params, context),
     };
   }
 }

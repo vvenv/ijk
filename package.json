@@ -17,7 +17,8 @@
     "require": "./dist/ijk.umd.cjs"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vitest watch",
+    "start": "vite",
     "lint": "oxlint",
     "test": "vitest",
     "build": "vite build",

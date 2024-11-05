@@ -1,6 +1,7 @@
 /**
  * Parse formal parameters.
- * @example `a b="foo"` in `{{ macro x a b="foo" }}`
+ * @example `{{ macro x a b="foo" }}`
+ *                      ^^^^^^^^^
  */
 export function parseFormalParams(params: string | undefined) {
   if (!params) {

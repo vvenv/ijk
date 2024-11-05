@@ -3,6 +3,7 @@ import { isLiteral } from './is-literal';
 /**
  * Parse actual parameters.
  * @example {{ x | replace a "b" }}
+ *                 ^^^^^^^^^^^^^
  */
 export function parseActualParams(params: string | undefined, context: string) {
   if (!params) {
