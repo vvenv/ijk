@@ -1,0 +1,449 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`for - array > basic 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";s+=e(c.names);const l_1_1=c.names.length;for (let i_1_1=0; i_1_1<l_1_1; i_1_1++) {const c_i_1_1={...c,name: c.names[i_1_1],loop: {index: i_1_1,first: i_1_1 === 0,last: i_1_1 === l_1_1,length: l_1_1}};s+=e(c_i_1_1.name);s+=" of ";s+=e(c_i_1_1.names);}s+=e(c.names);return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ names }}{{ for name of names }}{{ name }} of {{ names }}{{ endfor }}{{ names }}",
+  },
+}
+`;
+
+exports[`for - array > destructuring 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const l_1_0=c.a.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,x: c.a[i_1_0][0],y: c.a[i_1_0][1],z: c.a[i_1_0][2],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.x);s+=",";s+=e(c_i_1_0.y);s+=",";s+=e(c_i_1_0.z);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for x,y,z of a }}{{ x }},{{ y }},{{ z }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - array > duo 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const l_1_0=c.names.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[i_1_0],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.name);s+=" of ";s+=e(c_i_1_0.names);}const l_1_1=c.names.length;for (let i_1_1=0; i_1_1<l_1_1; i_1_1++) {const c_i_1_1={...c,name: c.names[i_1_1],loop: {index: i_1_1,first: i_1_1 === 0,last: i_1_1 === l_1_1,length: l_1_1}};s+=e(c_i_1_1.name);s+=" of ";s+=e(c_i_1_1.names);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name of names }}{{ name }} of {{ names }}{{ endfor }}{{ for name of names }}{{ name }} of {{ names }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - array > else 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const l_1_0=c.names.length;if (l_1_0) {for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[i_1_0],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.name);}} else {s+="empty";}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name of names }}{{ name }}{{ else }}empty{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - array > filter 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const l_1_0=f.split(c.names).length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: f.split(c.names)[i_1_0],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.name);s+=" of ";s+=e(c_i_1_0.names);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name of names | split }}{{ name }} of {{ names }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - array > filter w/ params 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const l_1_0=f.split(c.name,"").length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,char: f.split(c.name,"")[i_1_0],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.char);s+=" of ";s+=e(c_i_1_0.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for char of name | split "" }}{{ char }} of {{ name }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - array > loop.index 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const l_1_0=c.names.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[i_1_0],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.loop.index+1);s+=" ";s+=e(c_i_1_0.name);s+=" of ";s+=e(c_i_1_0.names);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name of names }}{{loop.index+1}} {{ name }} of {{ names }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - array > nesting 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const l_1_0=c.ass.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,as: c.ass[i_1_0],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};const l_2_0=c_i_1_0.as.length;for (let i_2_0=0; i_2_0<l_2_0; i_2_0++) {const c_i_1_0_i_2_0={...c_i_1_0,a: c_i_1_0.as[i_2_0],loop: {index: i_2_0,first: i_2_0 === 0,last: i_2_0 === l_2_0,length: l_2_0}};s+=e(c_i_1_0_i_2_0.a);s+=" of ";s+=e(c_i_1_0_i_2_0.as);s+=" of ";s+=e(c_i_1_0_i_2_0.ass);}}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for as of ass }}{{ for a of as }}{{ a }} of {{ as }} of {{ ass }}{{ endfor }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - object > basic 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";s+=e(c.names);const k_1_1=Object.keys(c.names);const l_1_1=k_1_1.length;for (let i_1_1=0; i_1_1<l_1_1; i_1_1++) {const c_i_1_1={...c,name: c.names[k_1_1[i_1_1]],loop: {index: i_1_1,first: i_1_1 === 0,last: i_1_1 === l_1_1,length: l_1_1}};s+=e(c_i_1_1.name);s+=" in ";s+=e(c_i_1_1.names);}s+=e(c.names);return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ names }}{{ for name in names }}{{ name }} in {{ names }}{{ endfor }}{{ names }}",
+  },
+}
+`;
+
+exports[`for - object > duo 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(c.names);const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);}const k_1_1=Object.keys(c.names);const l_1_1=k_1_1.length;for (let i_1_1=0; i_1_1<l_1_1; i_1_1++) {const c_i_1_1={...c,name: c.names[k_1_1[i_1_1]],loop: {index: i_1_1,first: i_1_1 === 0,last: i_1_1 === l_1_1,length: l_1_1}};s+=e(c_i_1_1.name);s+=" in ";s+=e(c_i_1_1.names);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name in names }}{{ name }} in {{ names }}{{ endfor }}{{ for name in names }}{{ name }} in {{ names }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - object > else 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(c.names);const l_1_0=k_1_0.length;if (l_1_0) {for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.name);}} else {s+="empty";}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name in names }}{{ name }}{{ else }}empty{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - object > filter 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(f.split(c.names));const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: f.split(c.names)[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name in names | split }}{{ name }} in {{ names }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - object > filter w/ params 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(f.split(c.name,""));const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,char: f.split(c.name,"")[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.char);s+=" in ";s+=e(c_i_1_0.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for char in name | split "" }}{{ char }} in {{ name }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - object > loop.index 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(c.names);const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=e(c_i_1_0.loop.index+1);s+=" ";s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name in names }}{{loop.index+1}} {{ name }} in {{ names }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`for - object > nesting 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(c.ass);const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,as: c.ass[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};const k_2_0=Object.keys(c_i_1_0.as);const l_2_0=k_2_0.length;for (let i_2_0=0; i_2_0<l_2_0; i_2_0++) {const c_i_1_0_i_2_0={...c_i_1_0,a: c_i_1_0.as[k_2_0[i_2_0]],loop: {index: i_2_0,first: i_2_0 === 0,last: i_2_0 === l_2_0,length: l_2_0}};s+=e(c_i_1_0_i_2_0.a);s+=" in ";s+=e(c_i_1_0_i_2_0.as);s+=" in ";s+=e(c_i_1_0_i_2_0.ass);}}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for as in ass }}{{ for a in as }}{{ a }} in {{ as }} in {{ ass }}{{ endfor }}{{ endfor }}",
+  },
+}
+`;
+
+exports[`validation > start and end tag mismatched 1`] = `[Function]`;
+
+exports[`validation > start and end tag mismatched 2`] = `[ASTError: "endfor" must follow "for", not "if".]`;
+
+exports[`validation > start and end tag mismatched 3`] = `
+[Error:  i>j>k  "endfor" must follow "for", not "if".
+
+1: {{ if x }}{{ endfor }}
+   ^^^^^^^^^^
+             ^^^^^^^^^^^^
+]
+`;

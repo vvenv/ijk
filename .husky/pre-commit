@@ -1,0 +1,6 @@
+yarn lint
+NODE_ENV=test yarn test
+export GIT_AUTHOR_NAME="vvenv"
+export GIT_AUTHOR_EMAIL="wenfu.li@qq.com"
+export GIT_COMMITTER_NAME="vvenv"
+export GIT_COMMITTER_EMAIL="wenfu.li@qq.com"

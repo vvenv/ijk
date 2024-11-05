@@ -1,0 +1,61 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    paths-ignore:
+      - '*.md'
+
+concurrency:
+  group: 'test'
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'yarn'
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: yarn-cache-${{ hashFiles('yarn.lock') }}
+      - name: Install Dependencies
+        run: yarn install --immutable
+      - name: Run lint
+        run: yarn lint
+      - name: Run test
+        run: yarn test --coverage
+      - name: Vitest Coverage Report
+        uses: davelosert/vitest-coverage-report-action@v2.6.0
+      - name: Get Coverage
+        shell: bash
+        run: |
+          COV=$(node -p 't=require("./coverage/coverage-summary.json").total,Math.min(...`lines|statements|functions|branches`.split(`|`).map(k=>t[k].pct))')
+          echo "COV=$COV" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - name: Create Badge
+        shell: bash
+        run: |
+          COV=${{ env.COV }}
+          mkdir -p badges
+          npx -q badgen-cli -j coverage -s $COV% -c $(node -p "+$COV >= 80 ? 'green' : +$COV >= 70 ? 'orange' : 'red'") > badges/coverage.svg
+          git add ./badges/coverage.svg
+          touch .nojekyll
+          git add ./.nojekyll
+          git -c user.email="${{ github.actor }}@users.noreply.github.com" -c user.name="${{ github.actor }}" commit --allow-empty -m "Update badges [skip ci]" --author="${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          git push -f origin gh-pages

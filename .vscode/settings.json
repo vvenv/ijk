@@ -1,0 +1,18 @@
+{
+  "cSpell.words": [
+    "endassign",
+    "endcall",
+    "endcomment",
+    "endmacro",
+    "endroot",
+    "endsuper",
+    "endvariable",
+    "iife",
+    "ijkjs",
+    "kleur",
+    "oxlint",
+    "vvenv"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}

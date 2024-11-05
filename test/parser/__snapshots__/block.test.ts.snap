@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const _b_1_0_0 = (_s)=>{s+="1";};const _b_1_0_32 = (_s)=>{s+="2";};const _b_1_0_64 = (_s)=>{_s?.();s+="3";};(() => _b_1_0_64(() => _b_1_0_32(() => _b_1_0_0())))();return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ block title }}1{{ endblock }}{{ block title }}2{{ endblock }}{{ block title }}{{ super() }}3{{ endblock }}",
+  },
+}
+`;
+
+exports[`validation > super() should only be a child of block 1`] = `[Function]`;
+
+exports[`validation > super() should only be a child of block 2`] = `[ASTError: "super" must follow "block", not "if".]`;
+
+exports[`validation > super() should only be a child of block 3`] = `
+[Error:  i>j>k  "super" must follow "block", not "if".
+
+1: {{ if x }}{{ super() }}{{ endif }}
+   ^^^^^^^^^^
+             ^^^^^^^^^^^^^
+]
+`;

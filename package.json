@@ -1,0 +1,39 @@
+{
+  "name": "@ijkjs/ijk",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "main": "./dist/ijk.umd.cjs",
+  "module": "./dist/ijk.js",
+  "types": "./index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./dist/ijk.js",
+    "require": "./dist/ijk.umd.cjs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "lint": "oxlint",
+    "test": "vitest",
+    "build": "vite build",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.7",
+    "@vitest/coverage-v8": "2.1.4",
+    "husky": "^9.1.6",
+    "oxlint": "^0.11.0",
+    "pinst": "^3.0.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
+  },
+  "dependencies": {
+    "kleur": "^4.1.5"
+  }
+}

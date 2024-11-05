@@ -1,0 +1,92 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tagStart and tagEnd 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(c.names);const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+="{{ name }} in {{ names }}";}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "%}",
+      "tagStart": "{%",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "%}",
+      "tagStart": "{%",
+      "trimWhitespace": true,
+    },
+    "template": "{% for name in names %}{{ name }} in {{ names }}{% endfor %}",
+  },
+}
+`;
+
+exports[`trimWhitespace > off 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";s+=" ";const k_1_0=Object.keys(c.names);const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+="\\n  ";s+=e(c_i_1_0.name);s+=" in  ";s+=e(c_i_1_0.names);s+="\\n ";}s+=" ";return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": false,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": false,
+    },
+    "template": " {{ for name  in names }}
+  {{ name }} in  {{ names }}
+ {{ endfor  }} ",
+  },
+}
+`;
+
+exports[`trimWhitespace > on 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";const k_1_0=Object.keys(c.names);const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,name: c.names[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+=" ";s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);s+=" ";}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ for name in names }}
+  {{ name }} in {{ names }}
+{{ endfor }}",
+  },
+}
+`;

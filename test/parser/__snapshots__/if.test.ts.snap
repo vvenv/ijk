@@ -1,0 +1,636 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name }}{{ name }}{{ /if }}",
+  },
+}
+`;
+
+exports[`basic 2`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`elif 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name === "foo") {s+=">>>";} else if (c.name === "bar") {s+="---";} else if (c.name === "baz") {s+="...";s+="{{ name }}";}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name == "foo" }}>>>{{ elif name == "bar" }}---{{ elif name == "baz" }}...{{ else }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`else 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name) {s+=e(c.name);} else {s+=e("*");}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name }}{{ name }}{{ else }}{{ "*" }}{{ endif }}",
+  },
+}
+`;
+
+exports[`equal 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name === c.other) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name eq other }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`equal 2`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name === c.other) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name == other }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`equal 3`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name === c.other) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name === other }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`equal 4`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name === "foo") {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name == "foo" }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`filter > basic 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (f.length(c.name)) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name | length }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`filter > multiple 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (f.odd(f.length(c.name))) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name | length | odd }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`filter > w/ params 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (f.join(c.names,"") === "foobar") {s+="yes";}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if names | join "" == "foobar" }}yes{{ endif }}",
+  },
+}
+`;
+
+exports[`in 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name in c.names) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name in names }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`in 2`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name in ["foo", "bar"]) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name in ["foo", "bar"] }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`includes 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.names includes c.name) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if names includes name }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`includes 2`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (["foo", "bar"] includes c.name) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if ["foo", "bar"] includes name }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`not 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (!c.name) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if not name }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`not 2`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (!c.name) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if !name }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`not equal 1`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name !== c.other) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name ne other }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`not equal 2`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name !== c.other) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name != other }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`not equal 3`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name !== c.other) {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name !== other }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`not equal 4`] = `
+{
+  "out": Out {
+    "content": ""use strict";let s = "";if (c.name !== "foo") {s+=e(c.name);}return s;",
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+  },
+  "smp": SMP {
+    "options": {
+      "autoEscape": true,
+      "debug": false,
+      "strictMode": true,
+      "stripComments": true,
+      "tagEnd": "}}",
+      "tagStart": "{{",
+      "trimWhitespace": true,
+    },
+    "template": "{{ if name != "foo" }}{{ name }}{{ endif }}",
+  },
+}
+`;
+
+exports[`validation > start and end tag mismatched 1`] = `[Function]`;
+
+exports[`validation > start and end tag mismatched 2`] = `[ASTError: "endif" must follow "if", not "for".]`;
+
+exports[`validation > start and end tag mismatched 3`] = `
+[Error:  i>j>k  "endif" must follow "if", not "for".
+
+1: {{ for x in y }}{{ endif }}
+   ^^^^^^^^^^^^^^^^
+                   ^^^^^^^^^^^
+]
+`;
+
+exports[`validation > start and end tag mismatched 4`] = `[Function]`;
+
+exports[`validation > start and end tag mismatched 5`] = `[ASTError: "elif" must follow "if", not "for".]`;
+
+exports[`validation > start and end tag mismatched 6`] = `
+[Error:  i>j>k  "elif" must follow "if", not "for".
+
+1: {{ for x in y }}{{ elif z }}
+   ^^^^^^^^^^^^^^^^
+                   ^^^^^^^^^^^^
+]
+`;

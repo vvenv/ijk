@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="javascript template engine" />
+    <meta name="keywords" content="javascript, template, engine" />
+    <title>ijk</title>
+    <link rel="stylesheet" href="/demo/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-html.min.js"></script>
+  </head>
+  <body>
+    <ul id="app">
+      <li>
+        <label for="template">Template</label>
+        <textarea id="template"></textarea>
+        <label for="data">Data</label>
+        <textarea id="data"></textarea>
+      </li>
+      <li>
+        <span>Code</span>
+        <pre id="code"><code class="language-js"></code></pre>
+        <span>Performance</span>
+        <div id="performance"></div>
+      </li>
+      <li>
+        <span>Result</span>
+        <pre id="result"><code class="language-html"></code></pre>
+        <span>Preview</span>
+        <div id="preview"></div>
+      </li>
+    </ul>
+    <script type="module" src="/demo/index.ts"></script>
+  </body>
+</html>
