@@ -11,7 +11,7 @@ on:
       - '*.md'
 
 concurrency:
-  group: 'test'
+  group: test-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
