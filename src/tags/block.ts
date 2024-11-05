@@ -37,7 +37,7 @@ export class BlockTag extends Tag {
         name: SUPER,
         statement,
         startIndex,
-        endIndex: endIndex,
+        endIndex,
       };
 
       if (ast.assertFirstTag(BLOCK, tag)) {

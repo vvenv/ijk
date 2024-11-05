@@ -40,6 +40,11 @@ describe('literal', () => {
   test('object', () => {
     expect(parse('{{ { x: 1 } }}')).toMatchSnapshot();
   });
+
+  test.skip('regexp', () => {
+    expect(parse('{{ /\\d+/ }}')).toMatchSnapshot();
+    expect(parse('{{ /{{.+?}}/gms }}')).toMatchSnapshot();
+  });
 });
 
 describe('filter', () => {

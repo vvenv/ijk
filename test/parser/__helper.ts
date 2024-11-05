@@ -3,4 +3,4 @@ import { Parser } from '../../src/parser';
 import { TemplateOptions } from '../../src/types';
 
 export const parse = (template: string, options?: TemplateOptions) =>
-  new Parser({ ...defaultOptions, ...options }).parse(template);
+  new Parser({ ...defaultOptions, ...options }).parse(template).out.value;

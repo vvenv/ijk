@@ -2,12 +2,13 @@ import { CONTEXT, FILTERS, ROOT, TAG_END, TAG_START } from './config';
 import { AST, ASTNode, StartTag } from './ast';
 import { Tag } from './tag';
 import {
-  IfTag,
-  ForTag,
-  BlockTag,
   AssignTag,
-  MacroTag,
+  BlockTag,
+  CallTag,
   CommentTag,
+  ForTag,
+  IfTag,
+  MacroTag,
   VariableTag,
 } from './tags';
 import { isLiteral } from './util/is-literal';
@@ -32,6 +33,7 @@ export class Parser {
     this.registerTag(new ForTag(this));
     this.registerTag(new BlockTag(this));
     this.registerTag(new MacroTag(this));
+    this.registerTag(new CallTag(this));
     this.registerTag(new AssignTag(this));
     this.registerTag(new CommentTag(this));
     // should be last
