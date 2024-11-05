@@ -9,7 +9,7 @@ export class Out {
       this.pushLine(`"use strict";`);
     }
 
-    this.pushLine('let s = "";');
+    this.pushLine('let s="";');
   }
 
   get value() {

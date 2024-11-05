@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`basic 1`] = `""use strict";let s = "";const _b_1_0_0 = (_s)=>{s+="1";};const _b_1_0_32 = (_s)=>{s+="2";};const _b_1_0_64 = (_s)=>{_s?.();s+="3";};(() => _b_1_0_64(() => _b_1_0_32(() => _b_1_0_0())))();return s;"`;
+exports[`basic 1`] = `""use strict";let s="";const _b_1_0_0=(_s)=>{s+="1";};const _b_1_0_32=(_s)=>{s+="2";};const _b_1_0_64=(_s)=>{_s?.();s+="3";};(()=>_b_1_0_64(()=>_b_1_0_32(()=>_b_1_0_0())))();return s;"`;
 
 exports[`validation > super() should only be a child of block 1`] = `[Function]`;
 

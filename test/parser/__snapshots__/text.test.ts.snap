@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`empty 1`] = `""use strict";let s = "";return s;"`;
+exports[`empty 1`] = `""use strict";let s="";return s;"`;
 
-exports[`html tags 1`] = `""use strict";let s = "";s+="<foo>foo</foo>";return s;"`;
+exports[`html tags 1`] = `""use strict";let s="";s+="<foo>foo</foo>";return s;"`;
 
-exports[`line break feed 1`] = `""use strict";let s = "";s+=" foo ";return s;"`;
+exports[`line break feed 1`] = `""use strict";let s="";s+=" foo ";return s;"`;
 
-exports[`quotes 1`] = `""use strict";let s = "";s+="\\"'foo'\\"";return s;"`;
+exports[`quotes 1`] = `""use strict";let s="";s+="\\"'foo'\\"";return s;"`;

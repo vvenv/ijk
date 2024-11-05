@@ -113,34 +113,32 @@ export class ForTag extends Tag {
       out.pushLine(`if (l_${affix}) {`);
     }
     out.pushLine(
-      `for (let i_${affix}=0; i_${affix}<l_${affix}; i_${affix}++) {`,
+      `for(let i_${affix}=0;i_${affix}<l_${affix};i_${affix}++){`,
       `const ${context}_i_${affix}={`,
       `...${context},`,
     );
     if (operator === 'of') {
       if (Array.isArray(left.expression)) {
         left.expression.forEach((key, i) => {
-          out.pushLine(`${key}: ${items}[i_${affix}][${i}],`);
+          out.pushLine(`${key}:${items}[i_${affix}][${i}],`);
         });
       } else {
-        out.pushLine(`${left.expression}: ${items}[i_${affix}],`);
+        out.pushLine(`${left.expression}:${items}[i_${affix}],`);
       }
     } else {
       if (Array.isArray(left.expression)) {
-        out.pushLine(`${left.expression[0]}: k_${affix}[i_${affix}],`);
-        out.pushLine(
-          `${left.expression[1]}: ${items}[k_${affix}[i_${affix}]],`,
-        );
+        out.pushLine(`${left.expression[0]}:k_${affix}[i_${affix}],`);
+        out.pushLine(`${left.expression[1]}:${items}[k_${affix}[i_${affix}]],`);
       } else {
-        out.pushLine(`${left.expression}: ${items}[k_${affix}[i_${affix}]],`);
+        out.pushLine(`${left.expression}:${items}[k_${affix}[i_${affix}]],`);
       }
     }
     out.pushLine(
-      `loop: {`,
-      `index: i_${affix},`,
-      `first: i_${affix} === 0,`,
-      `last: i_${affix} === l_${affix},`,
-      `length: l_${affix}`,
+      `loop:{`,
+      `index:i_${affix},`,
+      `first:i_${affix}===0,`,
+      `last:i_${affix}===l_${affix},`,
+      `length:l_${affix}`,
       `}`,
       `};`,
     );
@@ -163,7 +161,7 @@ export class ForTag extends Tag {
     smp: SMP,
   ) {
     out.pushLine('}');
-    out.pushLine('} else {');
+    out.pushLine('}else{');
     this.parser.renderNodeContent(template, tag, context, ast, out, smp);
   }
 

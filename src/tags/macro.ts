@@ -120,7 +120,7 @@ export class MacroTag extends Tag {
   ) {
     const affix = `${tag.node.level}_${tag.node.index}`;
     const { name, params } = this.parseStatement(tag.statement!);
-    out.pushLine(`${context}.${name} = (${[...params, '_c'].join(',')})=>{`);
+    out.pushLine(`${context}.${name}=(${[...params, '_c'].join(',')})=>{`);
     if (params.length) {
       out.pushLine(`const ${context}_m_${affix}={`, `...${context},`);
       params.forEach((param) => {

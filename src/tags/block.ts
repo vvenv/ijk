@@ -128,14 +128,14 @@ export class BlockTag extends Tag {
       for (let i = 0; i < tags.length; i++) {
         let _tag = tags[i] as StartTag;
         this.parser.cursor = _tag.endIndex;
-        out.pushLine(`const _b_${affix}_${_tag.startIndex} = (_s)=>{`);
+        out.pushLine(`const _b_${affix}_${_tag.startIndex}=(_s)=>{`);
         this.parser.renderNodeContent(template, _tag, context, ast, out, smp);
         out.pushStr(
           template.slice(this.parser.cursor, (_tag.next as EndTag).startIndex),
         );
         this.parser.cursor = (_tag.next as EndTag).endIndex;
         out.pushLine('};');
-        curry = `() => _b_${affix}_${_tag.startIndex}(${curry})`;
+        curry = `()=>_b_${affix}_${_tag.startIndex}(${curry})`;
       }
 
       out.pushLine(`(${curry})();`);

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`no tag 1`] = `""use strict";let s = "";s+="{{}}";return s;"`;
+exports[`no tag 1`] = `""use strict";let s="";s+="{{}}";return s;"`;
 
-exports[`tag mismatch 1`] = `""use strict";let s = "";return s;"`;
+exports[`tag mismatch 1`] = `""use strict";let s="";return s;"`;
 
-exports[`tag mismatch 2`] = `""use strict";let s = "";const k_1_0=Object.keys(c.j);const l_1_0=k_1_0.length;for (let i_1_0=0; i_1_0<l_1_0; i_1_0++) {const c_i_1_0={...c,i: c.j[k_1_0[i_1_0]],loop: {index: i_1_0,first: i_1_0 === 0,last: i_1_0 === l_1_0,length: l_1_0}};s+="1";s+=e(c_i_1_0.elif);s+="2";}return s;"`;
+exports[`tag mismatch 2`] = `""use strict";let s="";const k_1_0=Object.keys(c.j);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,i:c.j[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+="1";s+=e(c_i_1_0.elif);s+="2";}return s;"`;

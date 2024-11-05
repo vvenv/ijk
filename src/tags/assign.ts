@@ -68,13 +68,13 @@ export class AssignTag extends Tag {
       context,
       right!.filters,
     );
-    out.pushLine(`Object.assign(${context}, {`);
+    out.pushLine(`Object.assign(${context},{`);
     if (Array.isArray(left.expression)) {
       left.expression.forEach((key) => {
-        out.pushLine(`${key}: ${object}.${key},`);
+        out.pushLine(`${key}:${object}.${key},`);
       });
     } else {
-      out.pushLine(`${left.expression}: ${object},`);
+      out.pushLine(`${left.expression}:${object},`);
     }
     out.pushLine(`});`);
   }

@@ -75,7 +75,7 @@ export class CommentTag extends Tag {
       if (!out.options.stripComments) {
         const content = (tag as StartTag).statement;
         if (content) {
-          out.pushStr(`<!-- ${content} -->`);
+          out.pushStr(`<!--${content}-->`);
         } else {
           out.pushStr('<!--');
           this.parser.renderNodeContent(

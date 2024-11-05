@@ -1,46 +1,46 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`basic 1`] = `""use strict";let s = "";if (c.name) {s+=e(c.name);}return s;"`;
+exports[`basic 1`] = `""use strict";let s="";if(c.name){s+=e(c.name);}return s;"`;
 
-exports[`basic 2`] = `""use strict";let s = "";if (c.name) {s+=e(c.name);}return s;"`;
+exports[`basic 2`] = `""use strict";let s="";if(c.name){s+=e(c.name);}return s;"`;
 
-exports[`elif 1`] = `""use strict";let s = "";if (c.name === "foo") {s+=">>>";} else if (c.name === "bar") {s+="---";} else if (c.name === "baz") {s+="...";s+="{{ name }}";}return s;"`;
+exports[`elif 1`] = `""use strict";let s="";if(c.name==="foo"){s+=">>>";}else if(c.name==="bar"){s+="---";}else if(c.name==="baz"){s+="...";s+="{{ name }}";}return s;"`;
 
-exports[`else 1`] = `""use strict";let s = "";if (c.name) {s+=e(c.name);} else {s+=e("*");}return s;"`;
+exports[`else 1`] = `""use strict";let s="";if(c.name){s+=e(c.name);}else{s+=e("*");}return s;"`;
 
-exports[`equal 1`] = `""use strict";let s = "";if (c.name === c.other) {s+=e(c.name);}return s;"`;
+exports[`equal 1`] = `""use strict";let s="";if(c.name===c.other){s+=e(c.name);}return s;"`;
 
-exports[`equal 2`] = `""use strict";let s = "";if (c.name === c.other) {s+=e(c.name);}return s;"`;
+exports[`equal 2`] = `""use strict";let s="";if(c.name===c.other){s+=e(c.name);}return s;"`;
 
-exports[`equal 3`] = `""use strict";let s = "";if (c.name === c.other) {s+=e(c.name);}return s;"`;
+exports[`equal 3`] = `""use strict";let s="";if(c.name===c.other){s+=e(c.name);}return s;"`;
 
-exports[`equal 4`] = `""use strict";let s = "";if (c.name === "foo") {s+=e(c.name);}return s;"`;
+exports[`equal 4`] = `""use strict";let s="";if(c.name==="foo"){s+=e(c.name);}return s;"`;
 
-exports[`filter > basic 1`] = `""use strict";let s = "";if (f.length(c.name)) {s+=e(c.name);}return s;"`;
+exports[`filter > basic 1`] = `""use strict";let s="";if(f.length(c.name)){s+=e(c.name);}return s;"`;
 
-exports[`filter > multiple 1`] = `""use strict";let s = "";if (f.odd(f.length(c.name))) {s+=e(c.name);}return s;"`;
+exports[`filter > multiple 1`] = `""use strict";let s="";if(f.odd(f.length(c.name))){s+=e(c.name);}return s;"`;
 
-exports[`filter > w/ params 1`] = `""use strict";let s = "";if (f.join(c.names,"") === "foobar") {s+="yes";}return s;"`;
+exports[`filter > w/ params 1`] = `""use strict";let s="";if(f.join(c.names,"")==="foobar"){s+="yes";}return s;"`;
 
-exports[`in 1`] = `""use strict";let s = "";if (c.name in c.names) {s+=e(c.name);}return s;"`;
+exports[`in 1`] = `""use strict";let s="";if(c.nameinc.names){s+=e(c.name);}return s;"`;
 
-exports[`in 2`] = `""use strict";let s = "";if (c.name in ["foo", "bar"]) {s+=e(c.name);}return s;"`;
+exports[`in 2`] = `""use strict";let s="";if(c.namein["foo", "bar"]){s+=e(c.name);}return s;"`;
 
-exports[`includes 1`] = `""use strict";let s = "";if (c.names includes c.name) {s+=e(c.name);}return s;"`;
+exports[`includes 1`] = `""use strict";let s="";if(c.namesincludesc.name){s+=e(c.name);}return s;"`;
 
-exports[`includes 2`] = `""use strict";let s = "";if (["foo", "bar"] includes c.name) {s+=e(c.name);}return s;"`;
+exports[`includes 2`] = `""use strict";let s="";if(["foo", "bar"]includesc.name){s+=e(c.name);}return s;"`;
 
-exports[`not 1`] = `""use strict";let s = "";if (!c.name) {s+=e(c.name);}return s;"`;
+exports[`not 1`] = `""use strict";let s="";if(!c.name){s+=e(c.name);}return s;"`;
 
-exports[`not 2`] = `""use strict";let s = "";if (!c.name) {s+=e(c.name);}return s;"`;
+exports[`not 2`] = `""use strict";let s="";if(!c.name){s+=e(c.name);}return s;"`;
 
-exports[`not equal 1`] = `""use strict";let s = "";if (c.name !== c.other) {s+=e(c.name);}return s;"`;
+exports[`not equal 1`] = `""use strict";let s="";if(c.name!==c.other){s+=e(c.name);}return s;"`;
 
-exports[`not equal 2`] = `""use strict";let s = "";if (c.name !== c.other) {s+=e(c.name);}return s;"`;
+exports[`not equal 2`] = `""use strict";let s="";if(c.name!==c.other){s+=e(c.name);}return s;"`;
 
-exports[`not equal 3`] = `""use strict";let s = "";if (c.name !== c.other) {s+=e(c.name);}return s;"`;
+exports[`not equal 3`] = `""use strict";let s="";if(c.name!==c.other){s+=e(c.name);}return s;"`;
 
-exports[`not equal 4`] = `""use strict";let s = "";if (c.name !== "foo") {s+=e(c.name);}return s;"`;
+exports[`not equal 4`] = `""use strict";let s="";if(c.name!=="foo"){s+=e(c.name);}return s;"`;
 
 exports[`validation > start and end tag mismatched 1`] = `[Function]`;
 
