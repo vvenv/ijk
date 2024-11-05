@@ -79,7 +79,7 @@ export class CallTag extends Tag {
     smp: SMP,
   ) {
     const { name, params } = this.parseStatement(tag.statement!, context);
-    out.pushLine(`${context}.${name}(${params.join(',')}, () => {`);
+    out.pushLine(`${context}.${name}(${params.join(',')},()=>{`);
     this.parser.renderNodeContent(template, tag, context, ast, out, smp);
   }
 

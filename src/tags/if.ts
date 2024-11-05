@@ -142,7 +142,7 @@ export class IfTag extends Tag {
       );
       condition.push(`${rightNot ? '!' : ''}${identifierRight}`);
     }
-    out.pushLine(`${isElif ? '} else if' : 'if'} (${condition.join(' ')}) {`);
+    out.pushLine(`${isElif ? '}else if' : 'if'}(${condition.join('')}){`);
     this.parser.renderNodeContent(template, tag, context, ast, out, smp);
   }
 
@@ -154,7 +154,7 @@ export class IfTag extends Tag {
     out: Out,
     smp: SMP,
   ) {
-    out.pushLine('} else {');
+    out.pushLine('}else{');
     this.parser.renderNodeContent(template, tag, context, ast, out, smp);
   }
 

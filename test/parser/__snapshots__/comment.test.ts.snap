@@ -1,13 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`stripComments > off > basic 1`] = `""use strict";let s = "";s+="<!-- foo -->";return s;"`;
+exports[`stripComments > off > basic 1`] = `""use strict";let s="";s+="<!--foo-->";return s;"`;
 
-exports[`stripComments > off > basic 2`] = `""use strict";let s = "";s+="<!-- foo -->";return s;"`;
+exports[`stripComments > off > basic 2`] = `""use strict";let s="";s+="<!--foo-->";return s;"`;
 
-exports[`stripComments > off > multiline 1`] = `""use strict";let s = "";s+="<!-- foo bar -->";return s;"`;
+exports[`stripComments > off > multiline 1`] = `""use strict";let s="";s+="<!--foo bar-->";return s;"`;
 
-exports[`stripComments > on > basic 1`] = `""use strict";let s = "";return s;"`;
+exports[`stripComments > on > basic 1`] = `""use strict";let s="";return s;"`;
 
-exports[`stripComments > on > basic 2`] = `""use strict";let s = "";return s;"`;
+exports[`stripComments > on > basic 2`] = `""use strict";let s="";return s;"`;
 
-exports[`stripComments > on > multiline 1`] = `""use strict";let s = "";return s;"`;
+exports[`stripComments > on > multiline 1`] = `""use strict";let s="";return s;"`;
