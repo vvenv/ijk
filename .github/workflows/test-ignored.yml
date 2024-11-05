@@ -1,0 +1,16 @@
+name: Test ignored
+
+on:
+  pull_request:
+    paths:
+      - '*.md'
+
+concurrency:
+  group: test-ignored-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0
