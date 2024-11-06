@@ -4,7 +4,7 @@ exports[`basic 1`] = `""use strict";let s="";if(c.name){s+=e(c.name);}return s;"
 
 exports[`basic 2`] = `""use strict";let s="";if(c.name){s+=e(c.name);}return s;"`;
 
-exports[`elif 1`] = `""use strict";let s="";if(c.name==="foo"){s+=">>>";}else if(c.name==="bar"){s+="---";}else if(c.name==="baz"){s+="...";s+="{{ name }}";}return s;"`;
+exports[`elif 1`] = `""use strict";let s="";if(c.name==="foo"){s+=">>>";}else if(c.name==="bar"){s+="---";}else if(c.name==="baz"){s+="...";}else{s+=e(c.name);}return s;"`;
 
 exports[`else 1`] = `""use strict";let s="";if(c.name){s+=e(c.name);}else{s+=e("*");}return s;"`;
 

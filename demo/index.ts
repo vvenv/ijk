@@ -8,7 +8,9 @@ declare global {
   }
 }
 
-const reset = new URLSearchParams(location.search).has('reset');
+const sp = new URLSearchParams(location.search);
+const reset = sp.has('reset');
+const raw = sp.has('raw');
 
 const defaultTemplate =
   (!reset && localStorage.getItem('template')) ||
@@ -35,6 +37,14 @@ const defaultTemplate =
   </ul>
   ---
   <ul>
+    {{ for a b in nested }}
+      <li>
+      {{ a }} - {{ b }}
+      </li>
+    {{ endfor }}
+  </ul>
+  ---
+  <ul>
     {{ for name in object }}
       <li>
         {{ if name == "Bob" }}
@@ -51,7 +61,7 @@ const defaultTemplate =
   </ul>
   ---
   <ul>
-    {{ for key, name in object }}
+    {{ for key name in object }}
       <li>
         {{ if name == "Bob" }}
           ***
@@ -96,6 +106,16 @@ const defaultData =
     "Charlie",
     "David",
     "Eve"
+  ],
+  "nested": [
+    [
+      "Alice",
+      "Eve"
+    ],
+    [
+      "Bob",
+      "Charlie"
+    ]
   ],
   "object": {
     "A": "Alice",
@@ -150,13 +170,17 @@ function update() {
     const result = render(parsedData);
     const time = Math.floor((performance.now() - now) * 1000) / 1000;
 
-    codeEl.textContent = window.js_beautify(__func.toString(), {
-      indent_size: 2,
-    });
+    codeEl.textContent = raw
+      ? __func.toString()
+      : window.js_beautify(__func.toString(), {
+          indent_size: 2,
+        });
     performanceEl.textContent = `${time}ms`;
-    resultEl.textContent = window.html_beautify(result, {
-      indent_size: 2,
-    });
+    resultEl.textContent = raw
+      ? result
+      : window.html_beautify(result, {
+          indent_size: 2,
+        });
     previewEl.innerHTML = result;
   } catch (error: any) {
     console.log(error.stack);

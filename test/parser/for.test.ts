@@ -21,21 +21,27 @@ describe('for - array', () => {
   test('basic', () => {
     expect(
       parse(
-        `{{ names }}{{ for name of names }}{{ name }} of {{ names }}{{ endfor }}{{ names }}`,
+        `{{ names }}{{ for name in names }}{{ name }} in {{ names }}{{ endfor }}{{ names }}`,
       ),
     ).toMatchSnapshot();
   });
 
   test('destructuring', () => {
     expect(
-      parse(`{{ for x,y,z of a }}{{ x }},{{ y }},{{ z }}{{ endfor }}`),
+      parse(`{{ for x y z in a }}{{ x }},{{ y }},{{ z }}{{ endfor }}`),
+    ).toMatchSnapshot();
+  });
+
+  test.skip('constructing', () => {
+    expect(
+      parse(`{{ for x in [a, b, c] }}{{ x }}{{ endfor }}`),
     ).toMatchSnapshot();
   });
 
   test('duo', () => {
     expect(
       parse(
-        `{{ for name of names }}{{ name }} of {{ names }}{{ endfor }}{{ for name of names }}{{ name }} of {{ names }}{{ endfor }}`,
+        `{{ for name in names }}{{ name }} in {{ names }}{{ endfor }}{{ for name in names }}{{ name }} in {{ names }}{{ endfor }}`,
       ),
     ).toMatchSnapshot();
   });
@@ -43,7 +49,7 @@ describe('for - array', () => {
   test('nesting', () => {
     expect(
       parse(
-        `{{ for as of ass }}{{ for a of as }}{{ a }} of {{ as }} of {{ ass }}{{ endfor }}{{ endfor }}`,
+        `{{ for as in ass }}{{ for a in as }}{{ a }} in {{ as }} in {{ ass }}{{ endfor }}{{ endfor }}`,
       ),
     ).toMatchSnapshot();
   });
@@ -51,21 +57,21 @@ describe('for - array', () => {
   test('loop.index', () => {
     expect(
       parse(
-        `{{ for name of names }}{{loop.index+1}} {{ name }} of {{ names }}{{ endfor }}`,
+        `{{ for name in names }}{{loop.index+1}} {{ name }} in {{ names }}{{ endfor }}`,
       ),
     ).toMatchSnapshot();
   });
 
   test('else', () => {
     expect(
-      parse(`{{ for name of names }}{{ name }}{{ else }}empty{{ endfor }}`),
+      parse(`{{ for name in names }}{{ name }}{{ else }}empty{{ endfor }}`),
     ).toMatchSnapshot();
   });
 
   test('filter', () => {
     expect(
       parse(
-        `{{ for name of names | split }}{{ name }} of {{ names }}{{ endfor }}`,
+        `{{ for name in names | split }}{{ name }} in {{ names }}{{ endfor }}`,
       ),
     ).toMatchSnapshot();
   });
@@ -73,7 +79,7 @@ describe('for - array', () => {
   test('filter w/ params', () => {
     expect(
       parse(
-        `{{ for char of name | split "" }}{{ char }} of {{ name }}{{ endfor }}`,
+        `{{ for char in name | split "" }}{{ char }} in {{ name }}{{ endfor }}`,
       ),
     ).toMatchSnapshot();
   });
@@ -85,6 +91,12 @@ describe('for - object', () => {
       parse(
         `{{ names }}{{ for name in names }}{{ name }} in {{ names }}{{ endfor }}{{ names }}`,
       ),
+    ).toMatchSnapshot();
+  });
+
+  test('destructuring', () => {
+    expect(
+      parse(`{{ for k v in a }}{{ k }}:{{ v }}{{ endfor }}`),
     ).toMatchSnapshot();
   });
 
