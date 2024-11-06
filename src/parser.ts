@@ -11,9 +11,9 @@ import {
   MacroTag,
   VariableTag,
 } from './tags';
-import { isLiteral } from './util/is-literal';
-import { parseActualParams } from './util/parse-actual-params';
-import { FilterMeta } from './util/parse-filter';
+import { isLiteral } from './helpers/is-literal';
+import { parseActualParams } from './helpers/parse-actual-params';
+import { FilterMeta } from './helpers/parse-filter';
 import { TemplateOptions } from './types';
 import { Out } from './out';
 import { SMP } from './smp';

@@ -143,7 +143,7 @@ function update() {
     const ijk = new Template({
       debug: true,
       stripComments: false,
-      trimWhitespace: false,
+      trimWhitespace: true,
     });
 
     const { __func, render } = ijk.compile(template);
@@ -158,7 +158,7 @@ function update() {
       indent_size: 2,
     });
     previewEl.innerHTML = result;
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.stack);
     console.log(error.details);
   }

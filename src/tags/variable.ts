@@ -2,8 +2,8 @@ import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { SMP } from '../smp';
 import { Tag } from '../tag';
-import { isLiteral } from '../util/is-literal';
-import { parseExpression } from '../util/parse-expression';
+import { isLiteral } from '../helpers/is-literal';
+import { parseExpression } from '../helpers/parse-expression';
 
 const VARIABLE = 'variable';
 const ENDVARIABLE = 'endvariable';

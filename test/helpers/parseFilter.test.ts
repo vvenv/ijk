@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { parseFilter } from '../../src/util/parse-filter';
+import { parseFilter } from '../../src/helpers/parse-filter';
 
 test('basic', () => {
   expect(parseFilter('abs')).toEqual({ name: 'abs' });

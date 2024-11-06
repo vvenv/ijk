@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { parseExpression } from '../../src/util/parse-expression';
+import { parseExpression } from '../../src/helpers/parse-expression';
 
 test('basic', () => {
   expect(parseExpression('x')).toEqual({ expression: 'x' });

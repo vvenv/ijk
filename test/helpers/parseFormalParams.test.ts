@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { parseFormalParams } from '../../src/util/parse-formal-params';
+import { parseFormalParams } from '../../src/helpers/parse-formal-params';
 
 test('basic', () => {
   expect(parseFormalParams('a')).toEqual(['a']);

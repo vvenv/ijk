@@ -2,7 +2,7 @@ import { SMP } from '../smp';
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
-import { parseFormalParams } from '../util/parse-formal-params';
+import { parseFormalParams } from '../helpers/parse-formal-params';
 
 const MACRO = 'macro';
 const ENDMACRO = 'endmacro';

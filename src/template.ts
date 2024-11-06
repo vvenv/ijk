@@ -1,5 +1,6 @@
-import { CONTEXT, ESCAPE, FILTERS, TAG_END, TAG_START } from './config';
+import { CONTEXT, ESCAPE, FILTERS, TAG_END, TAG_START, UTILS } from './config';
 import * as filters from './filters';
+import * as utils from './utils';
 import { Parser } from './parser';
 import { Safe } from './safe';
 import { Tag } from './tag';
@@ -45,7 +46,7 @@ export class Template {
   } {
     try {
       const { out, smp } = this.parser.parse(template);
-      const func = new Function(CONTEXT, FILTERS, ESCAPE, out.value);
+      const func = new Function(CONTEXT, FILTERS, ESCAPE, UTILS, out.value);
       (func as any).smp = smp;
       // func.sourceMap = `\n//# sourceMappingURL=data:application/json;base64,${btoa(smp.toString())}`;
       // func.sourceMap = `data:application/json;base64,${btoa(smp.toString())}`;
@@ -71,6 +72,7 @@ export class Template {
                   .replace(/"/g, '&#34;')
                   .replace(/'/g, '&#39;');
               },
+              utils,
             );
           } catch (error) {
             if (this.options.debug) {

@@ -2,7 +2,8 @@ import { SMP } from '../smp';
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
-import { parseExpression } from '../util/parse-expression';
+import { parseExpression } from '../helpers/parse-expression';
+import { UTILS } from '../config';
 
 const IF = 'if';
 const ELIF = 'elif';
@@ -127,22 +128,28 @@ export class IfTag extends Tag {
     let { left, leftNot, operator, right, rightNot } = this.parseStatement(
       tag.statement!,
     );
-    const identifierLeft = this.parser.getFilteredIdentifier(
+    let identifierLeft = this.parser.getFilteredIdentifier(
       left.expression as string,
       context,
       left.filters,
     );
-    const condition = [`${leftNot ? '!' : ''}${identifierLeft}`];
+    if (leftNot) {
+      identifierLeft = `!${identifierLeft}`;
+    }
+    let identifierRight;
     if (operator) {
-      condition.push(operator);
-      const identifierRight = this.parser.getFilteredIdentifier(
+      identifierRight = this.parser.getFilteredIdentifier(
         right!.expression as string,
         context,
         right!.filters,
       );
-      condition.push(`${rightNot ? '!' : ''}${identifierRight}`);
+      if (rightNot) {
+        identifierRight = `!${identifierRight}`;
+      }
     }
-    out.pushLine(`${isElif ? '}else if' : 'if'}(${condition.join('')}){`);
+    out.pushLine(
+      `${isElif ? '}else if' : 'if'}(${this.normalizeExpression(identifierLeft, operator, identifierRight)}){`,
+    );
     this.parser.renderNodeContent(template, tag, context, ast, out, smp);
   }
 
@@ -182,6 +189,22 @@ export class IfTag extends Tag {
       left: parseExpression(left),
       leftNot: !!leftNot,
     };
+  }
+
+  private normalizeExpression(left: string, operator?: string, right?: string) {
+    if (!operator) {
+      return left;
+    }
+
+    if (operator === 'in') {
+      return `${UTILS}.isIn(${left},${right})`;
+    }
+
+    if (operator === 'includes') {
+      return `${UTILS}.isInclude(${left},${right})`;
+    }
+
+    return `${left}${operator}${right}`;
   }
 
   private normalizeOperator(operator: string) {
