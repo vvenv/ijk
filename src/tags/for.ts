@@ -11,6 +11,7 @@ const RE = /^(?:for\s+(.+))|(else)|((?:end|\/)for)$/;
 
 /**
  * @example {{ for item in items }}{{ item }}{{ endfor }}
+ * @example {{ for key value in items }}{{ key }}:{{ value }}{{ endfor }}
  */
 export class ForTag extends Tag {
   parse(match: RegExpExecArray, ast: AST): void | false {
@@ -97,41 +98,32 @@ export class ForTag extends Tag {
     smp: SMP,
   ) {
     const affix = `${tag.node.level}_${tag.node.index}`;
-    const { left, operator, right } = this.parseStatement(tag.statement!);
+    const { left, right } = this.parseStatement(tag.statement!);
     const items = this.parser.getFilteredIdentifier(
       right!.expression as string,
       context,
       right!.filters,
     );
-    if (operator === 'of') {
-      out.pushLine(`const l_${affix}=${items}.length;`);
-    } else {
-      out.pushLine(`const k_${affix}=Object.keys(${items});`);
-      out.pushLine(`const l_${affix}=k_${affix}.length;`);
-    }
+    out.pushLine(`const o_${affix}=${items};`);
+    out.pushLine(`const a_${affix}=Array.isArray(o_${affix});`);
+    out.pushLine(`const k_${affix}=Object.keys(o_${affix});`);
+    out.pushLine(`const l_${affix}=k_${affix}.length;`);
     if ((tag.next as StartTag).name === ELSE) {
-      out.pushLine(`if (l_${affix}) {`);
+      out.pushLine(`if(l_${affix}){`);
     }
     out.pushLine(
       `for(let i_${affix}=0;i_${affix}<l_${affix};i_${affix}++){`,
       `const ${context}_i_${affix}={`,
       `...${context},`,
     );
-    if (operator === 'of') {
-      if (Array.isArray(left.expression)) {
-        left.expression.forEach((key, i) => {
-          out.pushLine(`${key}:${items}[i_${affix}][${i}],`);
-        });
-      } else {
-        out.pushLine(`${left.expression}:${items}[i_${affix}],`);
-      }
+    if (Array.isArray(left.expression)) {
+      left.expression.forEach((name, index) => {
+        out.pushLine(
+          `${name}:a_${affix}?o_${affix}[k_${affix}[i_${affix}]][${index}]:${index}===0?k_${affix}[i_${affix}]:o_${affix}[k_${affix}[i_${affix}]],`,
+        );
+      });
     } else {
-      if (Array.isArray(left.expression)) {
-        out.pushLine(`${left.expression[0]}:k_${affix}[i_${affix}],`);
-        out.pushLine(`${left.expression[1]}:${items}[k_${affix}[i_${affix}]],`);
-      } else {
-        out.pushLine(`${left.expression}:${items}[k_${affix}[i_${affix}]],`);
-      }
+      out.pushLine(`${left.expression}:o_${affix}[k_${affix}[i_${affix}]],`);
     }
     out.pushLine(
       `loop:{`,
@@ -170,10 +162,9 @@ export class ForTag extends Tag {
   }
 
   private parseStatement(statement: string) {
-    let [, left, operator, right] =
-      statement.match(/^(.+?)\s+(in|of)\s+(.+?)$/) ?? [];
+    let [, left, right] = statement.match(/^(.+?)\s+in\s+(.+?)$/) ?? [];
 
-    const names = left.split(/\s*,\s*/);
+    const names = left.split(/\s+/);
 
     return {
       left: {
@@ -181,7 +172,6 @@ export class ForTag extends Tag {
         negative: false,
       },
       right: parseExpression(right),
-      operator,
     };
   }
 }

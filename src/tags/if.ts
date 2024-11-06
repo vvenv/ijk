@@ -97,7 +97,7 @@ export class IfTag extends Tag {
     }
 
     if (tag.name === ELSE) {
-      if (tag.prev?.name === IF) {
+      if (tag.prev?.name === IF || tag.prev?.name === ELIF) {
         return this.renderElse(
           template,
           tag as StartTag,
