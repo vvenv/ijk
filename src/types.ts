@@ -2,7 +2,7 @@ export interface TemplateOptions {
   debug?: boolean;
   strictMode?: boolean;
   autoEscape?: boolean;
-  trimWhitespace?: boolean;
+  collapseWhitespace?: boolean;
   stripComments?: boolean;
   tagStart?: string;
   tagEnd?: string;

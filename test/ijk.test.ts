@@ -3,12 +3,7 @@ import { Template } from '../src/template';
 import { TemplateOptions } from '../src/types';
 
 const render = (template: string, context: object, options?: TemplateOptions) =>
-  new Template({
-    debug: true,
-    ...options,
-  })
-    .compile(template)
-    .render(context);
+  new Template(options).compile(template).render(context);
 
 test('cache', () => {});
 
@@ -20,7 +15,7 @@ describe('options', () => {
           `"
 {{ x }}
 <>`,
-          { x: '<foo></foo>' },
+          { x: '<foo>\t</foo>' },
         ),
       ).toMatchSnapshot();
     });
@@ -31,7 +26,7 @@ describe('options', () => {
           `"
 {{ x }}
 <>`,
-          { x: '<foo></foo>' },
+          { x: '<foo>\t</foo>' },
           {
             autoEscape: false,
           },

@@ -1,6 +1,7 @@
 import { CONTEXT, ESCAPE, FILTERS, TAG_END, TAG_START, UTILS } from './config';
 import * as filters from './filters';
 import * as utils from './utils';
+import { escape } from './escape';
 import { Parser } from './parser';
 import { Safe } from './safe';
 import { Tag } from './tag';
@@ -10,7 +11,7 @@ export const defaultOptions: Required<TemplateOptions> = {
   debug: false,
   autoEscape: true,
   strictMode: true,
-  trimWhitespace: true,
+  collapseWhitespace: true,
   stripComments: true,
   tagStart: TAG_START,
   tagEnd: TAG_END,
@@ -48,8 +49,6 @@ export class Template {
       const { out, smp } = this.parser.parse(template);
       const func = new Function(CONTEXT, FILTERS, ESCAPE, UTILS, out.value);
       (func as any).smp = smp;
-      // func.sourceMap = `\n//# sourceMappingURL=data:application/json;base64,${btoa(smp.toString())}`;
-      // func.sourceMap = `data:application/json;base64,${btoa(smp.toString())}`;
       return {
         __func: this.options.debug ? func : defaultFunc,
         render: (context: object): string => {
@@ -62,15 +61,11 @@ export class Template {
                 if (v instanceof Safe) {
                   return `${v}`;
                 }
-                let str = `${v}` as string;
+                let str = `${v}`;
                 if (this.options.autoEscape) {
                   str = str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 }
-
-                return str
-                  .replace(/&/g, '&amp;')
-                  .replace(/"/g, '&#34;')
-                  .replace(/'/g, '&#39;');
+                return escape(str);
               },
               utils,
             );
