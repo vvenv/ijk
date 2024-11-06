@@ -83,7 +83,6 @@ const defaultTemplate =
       <li>Empty array</li>
     {{ endfor }}
   </ul>
-
   <dl>
     <dt>Data Source:</dt>
     <dd>{{ info.source }}</dd>
@@ -163,7 +162,6 @@ function update() {
     const ijk = new Template({
       debug: true,
       stripComments: false,
-      trimWhitespace: true,
     });
 
     const { __func, render } = ijk.compile(template);

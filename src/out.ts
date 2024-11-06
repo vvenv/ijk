@@ -27,14 +27,14 @@ export class Out {
   }
 
   pushStr(s: string) {
-    if (this.options.trimWhitespace) {
+    if (this.options.collapseWhitespace) {
       s = s.replace(/\s+/gms, ' ');
-      s = s.replace(/\s+(?=<[^<>]+>)/gms, ' ');
-      s = s.replace(/(?=<\/[^<>]+>)\s+/gms, ' ');
     }
 
     if (s) {
-      this.pushLine(`s+="${s.replace(/"/g, '\\"').replace(/\n/g, '\\n')}";`);
+      this.pushLine(
+        `s+="${s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')}";`,
+      );
     }
   }
 
