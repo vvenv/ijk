@@ -31,7 +31,7 @@ export class VariableTag extends Tag {
     });
   }
 
-  render(
+  compile(
     _template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -40,7 +40,7 @@ export class VariableTag extends Tag {
     smp: SMP,
   ): void | false {
     if (tag.name === VARIABLE) {
-      return this.renderVariable(
+      return this.compileVariable(
         (tag as StartTag).statement!,
         context,
         ast,
@@ -56,7 +56,7 @@ export class VariableTag extends Tag {
     return false;
   }
 
-  private renderVariable(
+  private compileVariable(
     template: string,
     context: string,
     _ast: AST,

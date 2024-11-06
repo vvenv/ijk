@@ -72,7 +72,7 @@ export class IfTag extends Tag {
     return false;
   }
 
-  render(
+  compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -81,11 +81,11 @@ export class IfTag extends Tag {
     smp: SMP,
   ): void | false {
     if (tag.name === IF) {
-      return this.renderIf(template, tag as StartTag, context, ast, out, smp);
+      return this.compileIf(template, tag as StartTag, context, ast, out, smp);
     }
 
     if (tag.name === ELIF) {
-      return this.renderIf(
+      return this.compileIf(
         template,
         tag as StartTag,
         context,
@@ -98,7 +98,7 @@ export class IfTag extends Tag {
 
     if (tag.name === ELSE) {
       if (tag.prev?.name === IF || tag.prev?.name === ELIF) {
-        return this.renderElse(
+        return this.compileElse(
           template,
           tag as StartTag,
           context,
@@ -110,13 +110,13 @@ export class IfTag extends Tag {
     }
 
     if (tag.name === ENDIF) {
-      return this.renderEndif(out);
+      return this.compileEndif(out);
     }
 
     return false;
   }
 
-  private renderIf(
+  private compileIf(
     template: string,
     tag: StartTag,
     context: string,
@@ -150,10 +150,10 @@ export class IfTag extends Tag {
     out.pushLine(
       `${isElif ? '}else if' : 'if'}(${this.normalizeExpression(identifierLeft, operator, identifierRight)}){`,
     );
-    this.parser.renderNodeContent(template, tag, context, ast, out, smp);
+    this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 
-  private renderElse(
+  private compileElse(
     template: string,
     tag: StartTag,
     context: string,
@@ -162,10 +162,10 @@ export class IfTag extends Tag {
     smp: SMP,
   ) {
     out.pushLine('}else{');
-    this.parser.renderNodeContent(template, tag, context, ast, out, smp);
+    this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 
-  private renderEndif(out: Out) {
+  private compileEndif(out: Out) {
     out.pushLine('}');
   }
 

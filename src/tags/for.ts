@@ -57,7 +57,7 @@ export class ForTag extends Tag {
     return false;
   }
 
-  render(
+  compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -66,12 +66,12 @@ export class ForTag extends Tag {
     smp: SMP,
   ): void | false {
     if (tag.name === FOR) {
-      return this.renderFor(template, tag as StartTag, context, ast, out, smp);
+      return this.compileFor(template, tag as StartTag, context, ast, out, smp);
     }
 
     if (tag.name === ELSE) {
       if (tag.prev?.name === FOR) {
-        return this.renderElse(
+        return this.compileElse(
           template,
           tag as StartTag,
           context,
@@ -83,13 +83,13 @@ export class ForTag extends Tag {
     }
 
     if (tag.name === ENDFOR) {
-      return this.renderEndfor(out);
+      return this.compileEndfor(out);
     }
 
     return false;
   }
 
-  private renderFor(
+  private compileFor(
     template: string,
     tag: StartTag,
     context: string,
@@ -134,7 +134,7 @@ export class ForTag extends Tag {
       `}`,
       `};`,
     );
-    this.parser.renderNodeContent(
+    this.parser.compileNodeContent(
       template,
       tag,
       `${context}_i_${affix}`,
@@ -144,7 +144,7 @@ export class ForTag extends Tag {
     );
   }
 
-  private renderElse(
+  private compileElse(
     template: string,
     tag: StartTag,
     context: string,
@@ -154,10 +154,10 @@ export class ForTag extends Tag {
   ) {
     out.pushLine('}');
     out.pushLine('}else{');
-    this.parser.renderNodeContent(template, tag, context, ast, out, smp);
+    this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 
-  private renderEndfor(out: Out) {
+  private compileEndfor(out: Out) {
     out.pushLine('}');
   }
 
