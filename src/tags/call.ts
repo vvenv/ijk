@@ -44,7 +44,7 @@ export class CallTag extends Tag {
     return false;
   }
 
-  render(
+  compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -53,11 +53,18 @@ export class CallTag extends Tag {
     smp: SMP,
   ): void | false {
     if (tag.name === CALL) {
-      return this.renderCall(template, tag as StartTag, context, ast, out, smp);
+      return this.compileCall(
+        template,
+        tag as StartTag,
+        context,
+        ast,
+        out,
+        smp,
+      );
     }
 
     if (tag.name === ENDCALL) {
-      return this.renderEndcall(
+      return this.compileEndcall(
         template,
         tag as EndTag,
         context,
@@ -70,7 +77,7 @@ export class CallTag extends Tag {
     return false;
   }
 
-  private renderCall(
+  private compileCall(
     template: string,
     tag: StartTag,
     context: string,
@@ -80,10 +87,10 @@ export class CallTag extends Tag {
   ) {
     const { name, params } = this.parseStatement(tag.statement!, context);
     out.pushLine(`${context}.${name}(${params.join(',')},()=>{`);
-    this.parser.renderNodeContent(template, tag, context, ast, out, smp);
+    this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 
-  private renderEndcall(
+  private compileEndcall(
     _template: string,
     _tag: EndTag,
     _context: string,

@@ -37,7 +37,7 @@ export class AssignTag extends Tag {
     return false;
   }
 
-  render(
+  compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -45,7 +45,7 @@ export class AssignTag extends Tag {
     out: Out,
   ): void | false {
     if (tag.name === ASSIGN) {
-      return this.renderAssign(template, tag as StartTag, context, ast, out);
+      return this.compileAssign(template, tag as StartTag, context, ast, out);
     }
 
     if (tag.name === ENDASSIGN) {
@@ -55,7 +55,7 @@ export class AssignTag extends Tag {
     return false;
   }
 
-  private renderAssign(
+  private compileAssign(
     _template: string,
     tag: StartTag,
     context: string,

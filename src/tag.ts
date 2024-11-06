@@ -8,7 +8,7 @@ export abstract class Tag {
 
   abstract parse(match: RegExpExecArray, ast: AST): void | false;
 
-  abstract render(
+  abstract compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,

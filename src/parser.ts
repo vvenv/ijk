@@ -90,7 +90,7 @@ export class Parser {
       const { children } = ast;
       if (children.length) {
         children.forEach((node) => {
-          this.renderNode(template, node, CONTEXT, ast, out, smp);
+          this.compileNode(template, node, CONTEXT, ast, out, smp);
         });
 
         out.pushStr(template.slice(this.cursor));
@@ -104,7 +104,7 @@ export class Parser {
     return { out, smp };
   }
 
-  renderNode(
+  compileNode(
     template: string,
     { tags }: ASTNode,
     context = CONTEXT,
@@ -117,14 +117,14 @@ export class Parser {
       this.cursor = _tag.endIndex;
 
       for (const tag of this.tags) {
-        if (tag.render(template, _tag, context, ast, out, smp) !== false) {
+        if (tag.compile(template, _tag, context, ast, out, smp) !== false) {
           break;
         }
       }
     }
   }
 
-  renderNodeContent(
+  compileNodeContent(
     template: string,
     tag: StartTag,
     context: string,
@@ -134,7 +134,7 @@ export class Parser {
   ) {
     if (tag.children.length) {
       tag.children.forEach((child) => {
-        this.renderNode(template, child, context, ast, out, smp);
+        this.compileNode(template, child, context, ast, out, smp);
       });
     } else {
       const _tag = ast.getNextTag(tag);

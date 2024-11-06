@@ -63,7 +63,7 @@ export class CommentTag extends Tag {
     return false;
   }
 
-  render(
+  compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -78,7 +78,7 @@ export class CommentTag extends Tag {
           out.pushStr(`<!--${content}-->`);
         } else {
           out.pushStr('<!--');
-          this.parser.renderNodeContent(
+          this.parser.compileNodeContent(
             template,
             tag as StartTag,
             context,

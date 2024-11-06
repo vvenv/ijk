@@ -69,7 +69,7 @@ export class MacroTag extends Tag {
     return false;
   }
 
-  render(
+  compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -78,7 +78,7 @@ export class MacroTag extends Tag {
     smp: SMP,
   ): void | false {
     if (tag.name === MACRO) {
-      return this.renderMacro(
+      return this.compileMacro(
         template,
         tag as StartTag,
         context,
@@ -89,7 +89,7 @@ export class MacroTag extends Tag {
     }
 
     if (tag.name === CALLER) {
-      return this.renderCaller(
+      return this.compileCaller(
         template,
         tag as StartTag,
         context,
@@ -104,13 +104,13 @@ export class MacroTag extends Tag {
     }
 
     if (tag.name === ENDMACRO) {
-      return this.renderEndmacro(out);
+      return this.compileEndmacro(out);
     }
 
     return false;
   }
 
-  private renderMacro(
+  private compileMacro(
     template: string,
     tag: StartTag,
     context: string,
@@ -128,7 +128,7 @@ export class MacroTag extends Tag {
       });
       out.pushLine(`};`);
     }
-    this.parser.renderNodeContent(
+    this.parser.compileNodeContent(
       template,
       tag,
       `${context}_m_${affix}`,
@@ -138,7 +138,7 @@ export class MacroTag extends Tag {
     );
   }
 
-  private renderCaller(
+  private compileCaller(
     template: string,
     tag: StartTag,
     context: string,
@@ -147,10 +147,10 @@ export class MacroTag extends Tag {
     smp: SMP,
   ) {
     out.pushLine(`_c?.();`);
-    this.parser.renderNodeContent(template, tag, context, ast, out, smp);
+    this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 
-  private renderEndmacro(out: Out) {
+  private compileEndmacro(out: Out) {
     out.pushLine('};');
   }
 

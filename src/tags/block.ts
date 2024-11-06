@@ -79,7 +79,7 @@ export class BlockTag extends Tag {
     return false;
   }
 
-  render(
+  compile(
     template: string,
     tag: StartTag | EndTag,
     context: string,
@@ -88,7 +88,7 @@ export class BlockTag extends Tag {
     smp: SMP,
   ): void | false {
     if (tag.name === BLOCK) {
-      return this.renderBlock(
+      return this.compileBlock(
         template,
         tag as StartTag,
         context,
@@ -99,7 +99,7 @@ export class BlockTag extends Tag {
     }
 
     if (tag.name === SUPER) {
-      return this.renderSuper(out);
+      return this.compileSuper(out);
     }
 
     if (tag.name === ENDSUPER) {
@@ -113,7 +113,7 @@ export class BlockTag extends Tag {
     return false;
   }
 
-  private renderBlock(
+  private compileBlock(
     template: string,
     tag: StartTag,
     context: string,
@@ -129,7 +129,7 @@ export class BlockTag extends Tag {
         let _tag = tags[i] as StartTag;
         this.parser.cursor = _tag.endIndex;
         out.pushLine(`const _b_${affix}_${_tag.startIndex}=(_s)=>{`);
-        this.parser.renderNodeContent(template, _tag, context, ast, out, smp);
+        this.parser.compileNodeContent(template, _tag, context, ast, out, smp);
         out.pushStr(
           template.slice(this.parser.cursor, (_tag.next as EndTag).startIndex),
         );
@@ -144,7 +144,7 @@ export class BlockTag extends Tag {
     }
   }
 
-  private renderSuper(out: Out) {
+  private compileSuper(out: Out) {
     out.pushLine(`_s?.();`);
   }
 
