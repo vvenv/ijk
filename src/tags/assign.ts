@@ -1,7 +1,7 @@
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
-import { parseExpression } from '../util/parse-expression';
+import { parseExpression } from '../helpers/parse-expression';
 
 const ASSIGN = 'assign';
 const ENDASSIGN = 'endassign';

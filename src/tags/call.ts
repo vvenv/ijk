@@ -2,7 +2,7 @@ import { SMP } from '../smp';
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
-import { parseActualParams } from '../util/parse-actual-params';
+import { parseActualParams } from '../helpers/parse-actual-params';
 
 const CALL = 'call';
 const ENDCALL = 'endcall';

@@ -22,13 +22,13 @@ exports[`filter > multiple 1`] = `""use strict";let s="";if(f.odd(f.length(c.nam
 
 exports[`filter > w/ params 1`] = `""use strict";let s="";if(f.join(c.names,"")==="foobar"){s+="yes";}return s;"`;
 
-exports[`in 1`] = `""use strict";let s="";if(c.nameinc.names){s+=e(c.name);}return s;"`;
+exports[`in 1`] = `""use strict";let s="";if(u.isIn(c.name,c.names)){s+=e(c.name);}return s;"`;
 
-exports[`in 2`] = `""use strict";let s="";if(c.namein["foo", "bar"]){s+=e(c.name);}return s;"`;
+exports[`in 2`] = `""use strict";let s="";if(u.isIn(c.name,["foo", "bar"])){s+=e(c.name);}return s;"`;
 
-exports[`includes 1`] = `""use strict";let s="";if(c.namesincludesc.name){s+=e(c.name);}return s;"`;
+exports[`includes 1`] = `""use strict";let s="";if(u.isInclude(c.names,c.name)){s+=e(c.name);}return s;"`;
 
-exports[`includes 2`] = `""use strict";let s="";if(["foo", "bar"]includesc.name){s+=e(c.name);}return s;"`;
+exports[`includes 2`] = `""use strict";let s="";if(u.isInclude(["foo", "bar"],c.name)){s+=e(c.name);}return s;"`;
 
 exports[`not 1`] = `""use strict";let s="";if(!c.name){s+=e(c.name);}return s;"`;
 

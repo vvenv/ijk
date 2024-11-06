@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { isLiteral } from '../../src/util/is-literal';
+import { isLiteral } from '../../src/helpers/is-literal';
 
 test('primitive', () => {
   expect(isLiteral('1')).toBe(true);

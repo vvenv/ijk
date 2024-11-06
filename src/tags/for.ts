@@ -2,7 +2,7 @@ import { SMP } from '../smp';
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
-import { parseExpression } from '../util/parse-expression';
+import { parseExpression } from '../helpers/parse-expression';
 
 const FOR = 'for';
 const ELSE = 'else';
