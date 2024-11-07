@@ -13,6 +13,7 @@ const ENDVARIABLE = 'endvariable';
  * @example {{ my_var | my_filter }}
  */
 export class VariableTag extends Tag {
+  static priority = -10;
   parse(match: RegExpExecArray, ast: AST): void {
     const startIndex = match.index;
     const endIndex = match.index + match[0].length;

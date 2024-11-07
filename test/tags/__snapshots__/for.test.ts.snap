@@ -34,13 +34,13 @@ exports[`for - object > nesting 1`] = `""use strict";let s="";const o_1_0=c.ass;
 
 exports[`validation > start and end tag mismatched 1`] = `[Function]`;
 
-exports[`validation > start and end tag mismatched 2`] = `[ASTError: "endfor" must follow "for", not "if".]`;
+exports[`validation > start and end tag mismatched 2`] = `[ASTError: "endfor" must follow "for", not "root".]`;
 
 exports[`validation > start and end tag mismatched 3`] = `
-[Error:  i>j>k  "endfor" must follow "for", not "if".
+[Error:  i>j>k  "endfor" must follow "for", not "root".
 
 1: {{ if x }}{{ endfor }}
-   ^^^^^^^^^^
+   
              ^^^^^^^^^^^^
 ]
 `;

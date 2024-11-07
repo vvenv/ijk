@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { parse } from './__helper';
+import { parse } from '../__helper';
 
 test('basic', () => {
   expect(parse('{{ x }}')).toMatchSnapshot();
