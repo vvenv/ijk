@@ -1,4 +1,4 @@
-import { CONTEXT, FILTERS, ROOT, TAG_END, TAG_START } from './config';
+import { CONTEXT, ROOT, TAG_END, TAG_START } from './config';
 import { AST, ASTNode, StartTag } from './ast';
 import { Tag } from './tag';
 import {
@@ -11,9 +11,6 @@ import {
   MacroTag,
   VariableTag,
 } from './tags';
-import { isLiteral } from './helpers/is-literal';
-import { parseActualParams } from './helpers/parse-actual-params';
-import { FilterMeta } from './helpers/parse-filter';
 import { TemplateOptions } from './types';
 import { Out } from './out';
 import { SMP } from './smp';
