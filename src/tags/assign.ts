@@ -2,6 +2,7 @@ import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
 import { parseExpression } from '../helpers/parse-expression';
+import { compileExpression } from '../helpers/compile-expression';
 
 const ASSIGN = 'assign';
 const ENDASSIGN = 'endassign';
@@ -63,7 +64,7 @@ export class AssignTag extends Tag {
     out: Out,
   ) {
     const { left, right } = this.parseStatement(tag.statement!);
-    const object = this.parser.getFilteredIdentifier(
+    const object = compileExpression(
       right!.expression as string,
       context,
       right!.filters,

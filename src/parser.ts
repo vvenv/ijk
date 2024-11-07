@@ -142,29 +142,4 @@ export class Parser {
       out.pushStr(template.slice(tag.endIndex, _tag.startIndex));
     }
   }
-
-  /**
-   * Returns the expression with filters applied
-   */
-  getFilteredIdentifier(
-    expression: string,
-    context: string,
-    filters: FilterMeta[] = [],
-  ) {
-    let identifier = isLiteral(expression)
-      ? expression
-      : `${context}.${expression}`;
-
-    if (filters.length) {
-      for (const { name, params } of filters) {
-        const paramsStr: string = [
-          identifier,
-          ...parseActualParams(params, context),
-        ].join(',');
-        identifier = `${FILTERS}.${name}(${paramsStr})`;
-      }
-    }
-
-    return identifier;
-  }
 }

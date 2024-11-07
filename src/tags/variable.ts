@@ -4,6 +4,7 @@ import { SMP } from '../smp';
 import { Tag } from '../tag';
 import { isLiteral } from '../helpers/is-literal';
 import { parseExpression } from '../helpers/parse-expression';
+import { compileExpression } from '../helpers/compile-expression';
 
 const VARIABLE = 'variable';
 const ENDVARIABLE = 'endvariable';
@@ -69,9 +70,7 @@ export class VariableTag extends Tag {
     } else {
       const { expression, filters } = parseExpression(template);
 
-      out.pushVar(
-        this.parser.getFilteredIdentifier(expression, context, filters),
-      );
+      out.pushVar(compileExpression(expression, context, filters));
     }
   }
 }

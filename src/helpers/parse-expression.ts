@@ -1,4 +1,5 @@
 import { FilterMeta, parseFilter } from './parse-filter';
+
 /**
  * Parse an expression with optional filters.
  * @example parseExpression('x | replace "a" ","')

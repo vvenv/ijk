@@ -4,6 +4,7 @@ import { Out } from '../out';
 import { Tag } from '../tag';
 import { parseExpression } from '../helpers/parse-expression';
 import { UTILS } from '../config';
+import { compileExpression } from '../helpers/compile-expression';
 
 const IF = 'if';
 const ELIF = 'elif';
@@ -128,7 +129,7 @@ export class IfTag extends Tag {
     let { left, leftNot, operator, right, rightNot } = this.parseStatement(
       tag.statement!,
     );
-    let identifierLeft = this.parser.getFilteredIdentifier(
+    let identifierLeft = compileExpression(
       left.expression as string,
       context,
       left.filters,
@@ -138,7 +139,7 @@ export class IfTag extends Tag {
     }
     let identifierRight;
     if (operator) {
-      identifierRight = this.parser.getFilteredIdentifier(
+      identifierRight = compileExpression(
         right!.expression as string,
         context,
         right!.filters,
