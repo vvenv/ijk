@@ -2,7 +2,7 @@ import { SMP } from '../smp';
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
-import { parseFormalParams } from '../helpers/parse-formal-params';
+import { parseFormalArgs } from '../helpers/parse-formal-args';
 
 const MACRO = 'macro';
 const ENDMACRO = 'endmacro';
@@ -119,11 +119,11 @@ export class MacroTag extends Tag {
     smp: SMP,
   ) {
     const affix = `${tag.node.level}_${tag.node.index}`;
-    const { name, params } = this.parseStatement(tag.statement!);
-    out.pushLine(`${context}.${name}=(${[...params, '_c'].join(',')})=>{`);
-    if (params.length) {
+    const { name, args } = this.parseStatement(tag.statement!);
+    out.pushLine(`${context}.${name}=(${[...args, '_c'].join(',')})=>{`);
+    if (args.length) {
       out.pushLine(`const ${context}_m_${affix}={`, `...${context},`);
-      params.forEach((param) => {
+      args.forEach((param) => {
         out.pushLine(`${param.replace(/(\w+)=.+/, '$1')},`);
       });
       out.pushLine(`};`);
@@ -155,11 +155,11 @@ export class MacroTag extends Tag {
   }
 
   private parseStatement(statement: string) {
-    let [, name, params] = statement.match(/^(\w+?)(?:\s+(.+?))?$/) ?? [];
+    let [, name, args] = statement.match(/^(\w+?)(?:\s+(.+?))?$/) ?? [];
 
     return {
       name,
-      params: parseFormalParams(params),
+      args: parseFormalArgs(args),
     };
   }
 }

@@ -5,13 +5,13 @@ test('basic', () => {
   expect(parseFilter('abs')).toEqual({ name: 'abs' });
 });
 
-test('name and params', () => {
+test('name and args', () => {
   expect(parseFilter('replace "a" b.c')).toEqual({
     name: 'replace',
-    params: '"a" b.c',
+    args: '"a" b.c',
   });
   expect(parseFilter('replace ":" "-"')).toEqual({
     name: 'replace',
-    params: '":" "-"',
+    args: '":" "-"',
   });
 });

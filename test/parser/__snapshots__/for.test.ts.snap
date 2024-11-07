@@ -12,7 +12,7 @@ exports[`for - array > else 1`] = `""use strict";let s="";const o_1_0=c.names;co
 
 exports[`for - array > filter 1`] = `""use strict";let s="";const o_1_0=f.split(c.names);const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,name:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);}return s;"`;
 
-exports[`for - array > filter w/ params 1`] = `""use strict";let s="";const o_1_0=f.split(c.name,"");const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,char:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.char);s+=" in ";s+=e(c_i_1_0.name);}return s;"`;
+exports[`for - array > filter w/ args 1`] = `""use strict";let s="";const o_1_0=f.split(c.name,"");const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,char:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.char);s+=" in ";s+=e(c_i_1_0.name);}return s;"`;
 
 exports[`for - array > loop.index 1`] = `""use strict";let s="";const o_1_0=c.names;const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,name:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.loop.index+1);s+=" ";s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);}return s;"`;
 
@@ -28,7 +28,7 @@ exports[`for - object > else 1`] = `""use strict";let s="";const o_1_0=c.names;c
 
 exports[`for - object > filter 1`] = `""use strict";let s="";const o_1_0=f.split(c.names);const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,name:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);}return s;"`;
 
-exports[`for - object > filter w/ params 1`] = `""use strict";let s="";const o_1_0=f.split(c.name,"");const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,char:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.char);s+=" in ";s+=e(c_i_1_0.name);}return s;"`;
+exports[`for - object > filter w/ args 1`] = `""use strict";let s="";const o_1_0=f.split(c.name,"");const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,char:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.char);s+=" in ";s+=e(c_i_1_0.name);}return s;"`;
 
 exports[`for - object > loop.index 1`] = `""use strict";let s="";const o_1_0=c.names;const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,name:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=e(c_i_1_0.loop.index+1);s+=" ";s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);}return s;"`;
 

@@ -116,7 +116,7 @@ describe('filter', () => {
     ).toMatchSnapshot();
   });
 
-  test('w/ params', () => {
+  test('w/ args', () => {
     expect(
       parse(`{{ if names | join "" == "foobar" }}yes{{ endif }}`),
     ).toMatchSnapshot();

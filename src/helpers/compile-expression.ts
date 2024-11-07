@@ -1,6 +1,6 @@
 import { FILTERS } from '../config';
 import { isLiteral } from './is-literal';
-import { parseActualParams } from './parse-actual-params';
+import { parseActualArgs } from './parse-actual-args';
 import { FilterMeta } from './parse-filter';
 
 /**
@@ -16,12 +16,12 @@ export function compileExpression(
     : `${context}.${expression}`;
 
   if (filters.length) {
-    for (const { name, params } of filters) {
-      const paramsStr: string = [
+    for (const { name, args } of filters) {
+      const argStr: string = [
         identifier,
-        ...parseActualParams(params, context),
+        ...parseActualArgs(args, context),
       ].join(',');
-      identifier = `${FILTERS}.${name}(${paramsStr})`;
+      identifier = `${FILTERS}.${name}(${argStr})`;
     }
   }
 

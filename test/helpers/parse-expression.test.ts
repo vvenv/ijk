@@ -9,17 +9,17 @@ test('basic', () => {
   });
 });
 
-test('name and params', () => {
+test('name and args', () => {
   expect(parseExpression('x | replace "a", "," | split ""')).toEqual({
     expression: 'x',
     filters: [
       {
         name: 'replace',
-        params: '"a", ","',
+        args: '"a", ","',
       },
       {
         name: 'split',
-        params: '""',
+        args: '""',
       },
     ],
   });
@@ -31,11 +31,11 @@ test.skip('special characters', () => {
     filters: [
       {
         name: 'replace',
-        params: '\'|\', ":", `,`',
+        args: '\'|\', ":", `,`',
       },
       {
         name: 'split',
-        params: '""',
+        args: '""',
       },
     ],
   });

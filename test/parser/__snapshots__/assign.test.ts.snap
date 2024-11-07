@@ -8,6 +8,6 @@ exports[`duo 1`] = `""use strict";let s="";Object.assign(c,{x:'y',});s+=e(c.x);O
 
 exports[`filter 1`] = `""use strict";let s="";Object.assign(c,{x:f.split(c.y),});s+=e(c.x);s+=" from ";s+=e(c.y);return s;"`;
 
-exports[`filter w/ params 1`] = `""use strict";let s="";Object.assign(c,{char:f.split(c.name,""),});s+=e(c.char);s+=" from ";s+=e(c.name);return s;"`;
+exports[`filter w/ args 1`] = `""use strict";let s="";Object.assign(c,{char:f.split(c.name,""),});s+=e(c.char);s+=" from ";s+=e(c.name);return s;"`;
 
 exports[`nesting 1`] = `""use strict";let s="";Object.assign(c,{x:c.y,});Object.assign(c,{z:c.x,});s+=e(c.x);s+=" = ";s+=e(c.y);s+=" = ";s+=e(c.z);return s;"`;

@@ -76,7 +76,7 @@ describe('for - array', () => {
     ).toMatchSnapshot();
   });
 
-  test('filter w/ params', () => {
+  test('filter w/ args', () => {
     expect(
       parse(
         `{{ for char in name | split "" }}{{ char }} in {{ name }}{{ endfor }}`,
@@ -138,7 +138,7 @@ describe('for - object', () => {
     ).toMatchSnapshot();
   });
 
-  test('filter w/ params', () => {
+  test('filter w/ args', () => {
     expect(
       parse(
         `{{ for char in name | split "" }}{{ char }} in {{ name }}{{ endfor }}`,
