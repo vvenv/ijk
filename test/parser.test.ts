@@ -1,10 +1,15 @@
 import { describe, expect, test } from 'vitest';
 import { parse } from './__helper';
+import { CommentTag, ForTag } from '../src/tags';
+import { TemplateOptions } from '../src/types';
+
+const _parse = (input: string, options?: TemplateOptions) =>
+  parse(input, options, [ForTag, CommentTag]);
 
 describe('collapseWhitespace', () => {
   test('on', () => {
     expect(
-      parse(
+      _parse(
         `{{ for name in names }}
   {{ name }} in {{ names }}
 {{ endfor }}`,
@@ -14,7 +19,7 @@ describe('collapseWhitespace', () => {
 
   test('off', () => {
     expect(
-      parse(
+      _parse(
         ` {{ for name  in names }}
   {{ name }} in  {{ names }}
  {{ endfor  }} `,
@@ -28,12 +33,12 @@ describe('collapseWhitespace', () => {
 
 describe('stripComments', () => {
   test('on', () => {
-    expect(parse(`{{ ! this is a comment }}`)).toMatchSnapshot();
+    expect(_parse(`{{ ! this is a comment }}`)).toMatchSnapshot();
   });
 
   test('off', () => {
     expect(
-      parse(`{{ ! this is a comment }}`, {
+      _parse(`{{ ! this is a comment }}`, {
         stripComments: false,
       }),
     ).toMatchSnapshot();
@@ -42,11 +47,11 @@ describe('stripComments', () => {
 
 describe('strictMode', () => {
   test('on', () => {
-    expect(parse(``)).toMatchSnapshot();
+    expect(_parse(``)).toMatchSnapshot();
   });
   test('off', () => {
     expect(
-      parse(``, {
+      _parse(``, {
         strictMode: false,
       }),
     ).toMatchSnapshot();
@@ -55,9 +60,25 @@ describe('strictMode', () => {
 
 test('tagStart and tagEnd', () => {
   expect(
-    parse(`{% for name in names %}{{ name }} in {{ names }}{% endfor %}`, {
+    _parse(`{% for name in names %}{{ name }} in {{ names }}{% endfor %}`, {
       tagStart: '{%',
       tagEnd: '%}',
     }),
   ).toMatchSnapshot();
+});
+
+test('empty', () => {
+  expect(_parse(``)).toMatchSnapshot();
+});
+
+test('html tags', () => {
+  expect(_parse(`<foo>foo</foo>`)).toMatchSnapshot();
+});
+
+test('quotes', () => {
+  expect(_parse(`"'foo'"`)).toMatchSnapshot();
+});
+
+test('line break feed', () => {
+  expect(_parse(`\nfoo\n`)).toMatchSnapshot();
 });

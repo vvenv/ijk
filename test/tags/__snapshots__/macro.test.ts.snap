@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic 1`] = `""use strict";let s="";c.name=(x,y,_c)=>{const c_m_1_0={...c,x,y,};s+=e(c_m_1_0.x);s+=e(c_m_1_0.y);};s+=e(c.name(1, 2));return s;"`;
+
+exports[`call 1`] = `""use strict";let s="";c.name=(foo,bar,_c)=>{const c_m_1_0={...c,foo,bar,};s+=e(c_m_1_0.foo);_c?.();s+=e(c_m_1_0.bar);};s+=e(c.call name 1 2);s+="3";s+=e(c.endcall);return s;"`;
+
+exports[`default args 1`] = `""use strict";let s="";c.name=(x="foo",y=123,_c)=>{const c_m_1_0={...c,x,y,};s+=e(c_m_1_0.x);s+=e(c_m_1_0.y);};s+=e(c.name());return s;"`;

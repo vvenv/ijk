@@ -1,15 +1,22 @@
 import { describe, expect, test } from 'vitest';
-import { parse } from './__helper';
+import { parse } from '../__helper';
+import { BlockTag, IfTag } from '../../src/tags';
+import { TemplateOptions } from '../../src/types';
+
+const _parse = (input: string, options?: TemplateOptions) =>
+  parse(input, options, [IfTag, BlockTag]);
 
 describe('validation', () => {
   test('super() should only be a child of block', () => {
-    expect(() => parse('{{ if x }}{{ super() }}{{ endif }}')).toMatchSnapshot();
     expect(() =>
-      parse('{{ if x }}{{ super() }}{{ endif }}', { debug: true }),
+      _parse('{{ if x }}{{ super() }}{{ endif }}'),
+    ).toMatchSnapshot();
+    expect(() =>
+      _parse('{{ if x }}{{ super() }}{{ endif }}', { debug: true }),
     ).toThrowErrorMatchingSnapshot();
     expect(() => {
       try {
-        parse('{{ if x }}{{ super() }}{{ endif }}', { debug: true });
+        _parse('{{ if x }}{{ super() }}{{ endif }}', { debug: true });
       } catch (error: any) {
         throw new Error(error.details);
       }
@@ -19,7 +26,7 @@ describe('validation', () => {
 
 test('basic', () => {
   expect(
-    parse(
+    _parse(
       `{{ block title }}1{{ endblock }}{{ block title }}2{{ endblock }}{{ block title }}{{ super() }}3{{ endblock }}`,
     ),
   ).toMatchSnapshot();
@@ -27,7 +34,7 @@ test('basic', () => {
 
 test('block tag should be at the root level', () => {
   expect(() =>
-    parse('{{ if x }}{{ block title }}{{ endblock }}{{ endif }}', {
+    _parse('{{ if x }}{{ block title }}{{ endblock }}{{ endif }}', {
       debug: true,
     }),
   ).toThrowErrorMatchingInlineSnapshot(

@@ -44,26 +44,26 @@ exports[`not equal 4`] = `""use strict";let s="";if(c.name!=="foo"){s+=e(c.name)
 
 exports[`validation > start and end tag mismatched 1`] = `[Function]`;
 
-exports[`validation > start and end tag mismatched 2`] = `[ASTError: "endif" must follow "if", not "for".]`;
+exports[`validation > start and end tag mismatched 2`] = `[ASTError: "endif" must follow "if", not "root".]`;
 
 exports[`validation > start and end tag mismatched 3`] = `
-[Error:  i>j>k  "endif" must follow "if", not "for".
+[Error:  i>j>k  "endif" must follow "if", not "root".
 
 1: {{ for x in y }}{{ endif }}
-   ^^^^^^^^^^^^^^^^
+   
                    ^^^^^^^^^^^
 ]
 `;
 
 exports[`validation > start and end tag mismatched 4`] = `[Function]`;
 
-exports[`validation > start and end tag mismatched 5`] = `[ASTError: "elif" must follow "if", not "for".]`;
+exports[`validation > start and end tag mismatched 5`] = `[ASTError: "elif" must follow "if", not "root".]`;
 
 exports[`validation > start and end tag mismatched 6`] = `
-[Error:  i>j>k  "elif" must follow "if", not "for".
+[Error:  i>j>k  "elif" must follow "if", not "root".
 
 1: {{ for x in y }}{{ elif z }}
-   ^^^^^^^^^^^^^^^^
+   
                    ^^^^^^^^^^^^
 ]
 `;
