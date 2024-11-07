@@ -9,7 +9,7 @@ test('basic', () => {
   );
 });
 
-test('default params', () => {
+test('default args', () => {
   expect(
     parse(`{{ macro name x="foo" y=123 }}{{x}}{{y}}{{ endmacro }}{{ name() }}`),
   ).toMatchInlineSnapshot(

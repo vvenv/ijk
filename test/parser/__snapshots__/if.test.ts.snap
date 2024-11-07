@@ -20,7 +20,7 @@ exports[`filter > basic 1`] = `""use strict";let s="";if(f.length(c.name)){s+=e(
 
 exports[`filter > multiple 1`] = `""use strict";let s="";if(f.odd(f.length(c.name))){s+=e(c.name);}return s;"`;
 
-exports[`filter > w/ params 1`] = `""use strict";let s="";if(f.join(c.names,"")==="foobar"){s+="yes";}return s;"`;
+exports[`filter > w/ args 1`] = `""use strict";let s="";if(f.join(c.names,"")==="foobar"){s+="yes";}return s;"`;
 
 exports[`in 1`] = `""use strict";let s="";if(u.isIn(c.name,c.names)){s+=e(c.name);}return s;"`;
 

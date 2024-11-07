@@ -18,7 +18,7 @@ exports[`filter > multiple 1`] = `""use strict";let s="";s+=e(f.lower(f.upper(c.
 
 exports[`filter > safe 1`] = `""use strict";let s="";s+=e(f.safe(c.x));return s;"`;
 
-exports[`filter > w/ params 1`] = `""use strict";let s="";s+=e(f.split(c.name,""));return s;"`;
+exports[`filter > w/ args 1`] = `""use strict";let s="";s+=e(f.split(c.name,""));return s;"`;
 
 exports[`literal > array 1`] = `""use strict";let s="";s+=e([1, "1"]);return s;"`;
 

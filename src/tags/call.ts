@@ -2,7 +2,7 @@ import { SMP } from '../smp';
 import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
-import { parseActualParams } from '../helpers/parse-actual-params';
+import { parseActualArgs } from '../helpers/parse-actual-args';
 
 const CALL = 'call';
 const ENDCALL = 'endcall';
@@ -85,8 +85,8 @@ export class CallTag extends Tag {
     out: Out,
     smp: SMP,
   ) {
-    const { name, params } = this.parseStatement(tag.statement!, context);
-    out.pushLine(`${context}.${name}(${params.join(',')},()=>{`);
+    const { name, args } = this.parseStatement(tag.statement!, context);
+    out.pushLine(`${context}.${name}(${args.join(',')},()=>{`);
     this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 
@@ -102,11 +102,11 @@ export class CallTag extends Tag {
   }
 
   private parseStatement(statement: string, context: string) {
-    let [, name, params] = statement.match(/^(\w+?)(?:\s+(.+?))?$/) ?? [];
+    let [, name, args] = statement.match(/^(\w+?)(?:\s+(.+?))?$/) ?? [];
 
     return {
       name,
-      params: parseActualParams(params, context),
+      args: parseActualArgs(args, context),
     };
   }
 }

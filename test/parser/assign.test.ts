@@ -29,7 +29,7 @@ test('filter', () => {
   ).toMatchSnapshot();
 });
 
-test('filter w/ params', () => {
+test('filter w/ args', () => {
   expect(
     parse(`{{ assign char = name | split "" }}{{ char }} from {{ name }}`),
   ).toMatchSnapshot();

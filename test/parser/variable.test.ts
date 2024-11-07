@@ -64,7 +64,7 @@ describe('filter', () => {
     expect(parse('{{ x | safe }}')).toMatchSnapshot();
   });
 
-  test('w/ params', () => {
+  test('w/ args', () => {
     expect(parse(`{{ name | split "" }}`)).toMatchSnapshot();
   });
 });

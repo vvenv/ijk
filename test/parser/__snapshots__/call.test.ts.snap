@@ -2,4 +2,4 @@
 
 exports[`basic 1`] = `""use strict";let s = "";const _m_1_0 = (x,y)=>{const c_m_1_0={...c,x,y,};s+=e(c_m_1_0.x);s+=e(c_m_1_0.y);return "";};c.name = _m_1_0;s+=e(c.name(1, 2));return s;"`;
 
-exports[`default params 1`] = `""use strict";let s = "";const _m_1_0 = (x="foo",y=123)=>{const c_m_1_0={...c,x,y,};s+=e(c_m_1_0.x);s+=e(c_m_1_0.y);return "";};c.name = _m_1_0;s+=e(c.name());return s;"`;
+exports[`default args 1`] = `""use strict";let s = "";const _m_1_0 = (x="foo",y=123)=>{const c_m_1_0={...c,x,y,};s+=e(c_m_1_0.x);s+=e(c_m_1_0.y);return "";};c.name = _m_1_0;s+=e(c.name());return s;"`;
