@@ -1,9 +1,14 @@
 import { expect, test } from 'vitest';
-import { parse } from './__helper';
+import { parse } from '../__helper';
+import { ForTag, IfTag } from '../../src/tags';
+import { TemplateOptions } from '../../src/types';
+
+const _parse = (input: string, options?: TemplateOptions) =>
+  parse(input, options, [IfTag, ForTag]);
 
 test('for -> if', () => {
   expect(
-    parse(
+    _parse(
       `{{ for name in names }}{{ if name }}{{ name }}{{ endif }}{{ endfor }}`,
     ),
   ).toMatchSnapshot();
@@ -11,7 +16,7 @@ test('for -> if', () => {
 
 test('if -> for', () => {
   expect(
-    parse(
+    _parse(
       `{{ if names }}{{ for name in names }}{{ name }}{{ endfor }}{{ endif }}`,
     ),
   ).toMatchSnapshot();
@@ -19,7 +24,7 @@ test('if -> for', () => {
 
 test('if -> for -> if', () => {
   expect(
-    parse(
+    _parse(
       `{{ if name }}{{ for name in names }}{{ if name }}{{ name }}{{ endif }}{{ endfor }}{{ endif }}`,
     ),
   ).toMatchSnapshot();
@@ -27,7 +32,7 @@ test('if -> for -> if', () => {
 
 test('for -> if/else ', () => {
   expect(
-    parse(
+    _parse(
       `{{ for name in names }}{{ if name }}{{ name }}{{ else }}***{{ endif }}{{ endfor }}`,
     ),
   ).toMatchSnapshot();
@@ -35,8 +40,17 @@ test('for -> if/else ', () => {
 
 test('for -> if/else - literal', () => {
   expect(
-    parse(
+    _parse(
       `{{ for name in names }}{{ if name }}{{ name }}{{ else }}{{ "***" }}{{ endif }}{{ endfor }}`,
     ),
   ).toMatchSnapshot();
+});
+
+test('tag mismatch', () => {
+  expect(parse('{{ for i in j }}{{ endif }}')).toMatchSnapshot();
+  expect(parse('{{ for i in j }}1{{ elif }}2{{ endfor }}')).toMatchSnapshot();
+});
+
+test('no tag', () => {
+  expect(parse('{{}}')).toMatchSnapshot();
 });

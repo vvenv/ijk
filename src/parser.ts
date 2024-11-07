@@ -1,16 +1,6 @@
 import { CONTEXT, ROOT, TAG_END, TAG_START } from './config';
 import { AST, ASTNode, StartTag } from './ast';
 import { Tag } from './tag';
-import {
-  AssignTag,
-  BlockTag,
-  CallTag,
-  CommentTag,
-  ForTag,
-  IfTag,
-  MacroTag,
-  VariableTag,
-} from './tags';
 import { TemplateOptions } from './types';
 import { Out } from './out';
 import { SMP } from './smp';
@@ -20,25 +10,22 @@ export class Parser {
   private tags: Tag[] = [];
   private tagRe: RegExp;
 
-  constructor(public options: Required<TemplateOptions>) {
+  constructor(
+    public options: Required<TemplateOptions>,
+    tags: (typeof Tag)[] = [],
+  ) {
     this.tagRe = new RegExp(
       `${options.tagStart ?? TAG_START}\\s*(.+?)\\s*${options.tagEnd ?? TAG_END}`,
       'gms',
     );
-
-    this.registerTag(new IfTag(this));
-    this.registerTag(new ForTag(this));
-    this.registerTag(new BlockTag(this));
-    this.registerTag(new MacroTag(this));
-    this.registerTag(new CallTag(this));
-    this.registerTag(new AssignTag(this));
-    this.registerTag(new CommentTag(this));
-    // should be last
-    this.registerTag(new VariableTag(this));
+    this.tags = tags
+      .sort((a, b) => b.priority - a.priority)
+      .map((tag) => new (tag as any)(this));
   }
 
-  registerTag(tag: Tag) {
-    this.tags.push(tag);
+  registerTag(tag: typeof Tag) {
+    this.tags.push(new (tag as any)(this));
+    this.tags.sort((a, b) => b.priority - a.priority);
   }
 
   parse(template: string) {

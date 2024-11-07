@@ -9,3 +9,9 @@ exports[`for -> if/else - literal 1`] = `""use strict";let s="";const o_1_0=c.na
 exports[`if -> for -> if 1`] = `""use strict";let s="";if(c.name){const o_2_0=c.names;const a_2_0=Array.isArray(o_2_0);const k_2_0=Object.keys(o_2_0);const l_2_0=k_2_0.length;for(let i_2_0=0;i_2_0<l_2_0;i_2_0++){const c_i_2_0={...c,name:o_2_0[k_2_0[i_2_0]],loop:{index:i_2_0,first:i_2_0===0,last:i_2_0===l_2_0,length:l_2_0}};if(c_i_2_0.name){s+=e(c_i_2_0.name);}}}return s;"`;
 
 exports[`if -> for 1`] = `""use strict";let s="";if(c.names){const o_2_0=c.names;const a_2_0=Array.isArray(o_2_0);const k_2_0=Object.keys(o_2_0);const l_2_0=k_2_0.length;for(let i_2_0=0;i_2_0<l_2_0;i_2_0++){const c_i_2_0={...c,name:o_2_0[k_2_0[i_2_0]],loop:{index:i_2_0,first:i_2_0===0,last:i_2_0===l_2_0,length:l_2_0}};s+=e(c_i_2_0.name);}}return s;"`;
+
+exports[`no tag 1`] = `""use strict";let s="";s+="{{}}";return s;"`;
+
+exports[`tag mismatch 1`] = `""use strict";let s="";s+=e(c.for i in j);s+=e(c.endif);return s;"`;
+
+exports[`tag mismatch 2`] = `""use strict";let s="";s+=e(c.for i in j);s+="1";s+=e(c.elif);s+="2";s+=e(c.endfor);return s;"`;

@@ -5,6 +5,16 @@ import { escape } from './escape';
 import { Parser } from './parser';
 import { Safe } from './safe';
 import { Tag } from './tag';
+import {
+  AssignTag,
+  BlockTag,
+  CallTag,
+  CommentTag,
+  ForTag,
+  IfTag,
+  MacroTag,
+  VariableTag,
+} from './tags';
 import { TemplateOptions } from './types';
 
 export const defaultOptions: Required<TemplateOptions> = {
@@ -25,7 +35,17 @@ export class Template {
 
   constructor(options?: TemplateOptions) {
     this.options = { ...defaultOptions, ...options };
-    this.parser = new Parser(this.options);
+
+    this.parser = new Parser(this.options, [
+      AssignTag,
+      BlockTag,
+      CallTag,
+      CommentTag,
+      ForTag,
+      IfTag,
+      MacroTag,
+      VariableTag,
+    ]);
   }
 
   addGlobal(name: string, value: any) {
@@ -37,7 +57,7 @@ export class Template {
     return this;
   }
 
-  registerTag(tag: Tag) {
+  registerTag(tag: typeof Tag) {
     this.parser.registerTag(tag);
   }
 

@@ -4,7 +4,13 @@ import { Out } from './out';
 import { Parser } from './parser';
 
 export abstract class Tag {
-  constructor(protected parser: Parser) {}
+  static priority = 0;
+
+  priority = 0;
+
+  constructor(protected parser: Parser) {
+    this.priority = (this.constructor as typeof Tag).priority;
+  }
 
   abstract parse(match: RegExpExecArray, ast: AST): void | false;
 

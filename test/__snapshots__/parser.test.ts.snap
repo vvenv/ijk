@@ -4,6 +4,14 @@ exports[`collapseWhitespace > off 1`] = `""use strict";let s="";s+=" ";const o_1
 
 exports[`collapseWhitespace > on 1`] = `""use strict";let s="";const o_1_0=c.names;const a_1_0=Array.isArray(o_1_0);const k_1_0=Object.keys(o_1_0);const l_1_0=k_1_0.length;for(let i_1_0=0;i_1_0<l_1_0;i_1_0++){const c_i_1_0={...c,name:o_1_0[k_1_0[i_1_0]],loop:{index:i_1_0,first:i_1_0===0,last:i_1_0===l_1_0,length:l_1_0}};s+=" ";s+=e(c_i_1_0.name);s+=" in ";s+=e(c_i_1_0.names);s+=" ";}return s;"`;
 
+exports[`empty 1`] = `""use strict";let s="";return s;"`;
+
+exports[`html tags 1`] = `""use strict";let s="";s+="<foo>foo</foo>";return s;"`;
+
+exports[`line break feed 1`] = `""use strict";let s="";s+=" foo ";return s;"`;
+
+exports[`quotes 1`] = `""use strict";let s="";s+="\\"'foo'\\"";return s;"`;
+
 exports[`strictMode > off 1`] = `"let s="";return s;"`;
 
 exports[`strictMode > on 1`] = `""use strict";let s="";return s;"`;
