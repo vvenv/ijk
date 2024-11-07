@@ -3,6 +3,7 @@ import { AST, EndTag, StartTag } from '../ast';
 import { Out } from '../out';
 import { Tag } from '../tag';
 import { parseExpression } from '../helpers/parse-expression';
+import { compileExpression } from '../helpers/compile-expression';
 
 const FOR = 'for';
 const ELSE = 'else';
@@ -99,7 +100,7 @@ export class ForTag extends Tag {
   ) {
     const affix = `${tag.node.level}_${tag.node.index}`;
     const { left, right } = this.parseStatement(tag.statement!);
-    const items = this.parser.getFilteredIdentifier(
+    const items = compileExpression(
       right!.expression as string,
       context,
       right!.filters,
