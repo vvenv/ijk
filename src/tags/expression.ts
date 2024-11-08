@@ -6,31 +6,39 @@ import { isLiteral } from '../helpers/is-literal';
 import { parseExpression } from '../helpers/parse-expression';
 import { compileExpression } from '../helpers/compile-expression';
 
-const VARIABLE = 'variable';
-const ENDVARIABLE = 'endvariable';
+const EXPRESSION = 'expression';
+const ENDEXPRESSION = 'endexpression';
 
 /**
  * @example {{ my_var | my_filter }}
  */
-export class VariableTag extends Tag {
+export class ExpressionTag extends Tag {
   static priority = -10;
-  parse(match: RegExpExecArray, ast: AST): void {
+
+  parse(match: RegExpExecArray, ast: AST): void | false {
+    const statement = match[1];
     const startIndex = match.index;
     const endIndex = match.index + match[0].length;
 
-    ast.start({
-      name: VARIABLE,
-      statement: match[1],
-      startIndex,
-      endIndex,
-    });
+    if (this.assertExpression(statement)) {
+      ast.start({
+        name: EXPRESSION,
+        statement,
+        startIndex,
+        endIndex,
+      });
 
-    // Self closing
-    ast.end({
-      name: ENDVARIABLE,
-      startIndex: endIndex,
-      endIndex,
-    });
+      // Self closing
+      ast.end({
+        name: ENDEXPRESSION,
+        startIndex: endIndex,
+        endIndex,
+      });
+
+      return;
+    }
+
+    return false;
   }
 
   compile(
@@ -41,8 +49,8 @@ export class VariableTag extends Tag {
     out: Out,
     smp: SMP,
   ): void | false {
-    if (tag.name === VARIABLE) {
-      return this.compileVariable(
+    if (tag.name === EXPRESSION) {
+      return this.compileExpression(
         (tag as StartTag).statement!,
         context,
         ast,
@@ -51,14 +59,22 @@ export class VariableTag extends Tag {
       );
     }
 
-    if (tag.name === ENDVARIABLE) {
+    if (tag.name === ENDEXPRESSION) {
       return;
     }
 
     return false;
   }
 
-  private compileVariable(
+  private assertExpression(statement: string) {
+    // TODO: more strict assertion
+    return (
+      !/(window\.)?(alert|confirm|prompt)/.test(statement) &&
+      !/^[<>]/.test(statement)
+    );
+  }
+
+  private compileExpression(
     template: string,
     context: string,
     _ast: AST,

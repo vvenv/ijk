@@ -33,7 +33,7 @@ export class Out {
 
     if (s) {
       this.pushLine(
-        `s+="${s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')}";`,
+        `s+="${s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/[\n\r]/g, '\\n')}";`,
       );
     }
   }
