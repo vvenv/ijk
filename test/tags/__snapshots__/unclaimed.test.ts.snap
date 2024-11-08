@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic 1`] = `""use strict";let s="";s+=e("{{ > }}");return s;"`;
+
+exports[`basic 2`] = `""use strict";let s="";s+=e("{{ < }}");return s;"`;
+
+exports[`basic 3`] = `""use strict";let s="";s+=e("{{ alert(\\"XSS\\") }}");return s;"`;
+
+exports[`basic 4`] = `""use strict";let s="";s+=e("{{ window.alert(\\"XSS\\") }}");return s;"`;

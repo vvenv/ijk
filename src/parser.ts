@@ -42,18 +42,9 @@ export class Parser {
 
     let match;
     while ((match = this.tagRe.exec(template))) {
-      let handled = false;
       for (const tag of this.tags) {
         if (tag.parse(match, ast) !== false) {
-          handled = true;
           break;
-        }
-      }
-
-      if (!handled) {
-        if (this.options.debug) {
-          console.trace(match);
-          throw new Error('Invalid template');
         }
       }
     }

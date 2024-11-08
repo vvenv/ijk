@@ -2,7 +2,7 @@ import { defaultOptions } from '../src/template';
 import { Parser } from '../src/parser';
 import { TemplateOptions } from '../src/types';
 import { Tag } from '../src/tag';
-import { VariableTag } from '../src/tags';
+import { ExpressionTag, UnclaimedTag } from '../src/tags';
 
 export const parse = (
   template: string,
@@ -11,5 +11,6 @@ export const parse = (
 ) =>
   new Parser({ ...defaultOptions, ...options }, [
     ...(tags || []),
-    VariableTag,
+    ExpressionTag,
+    UnclaimedTag,
   ]).parse(template).out.value;

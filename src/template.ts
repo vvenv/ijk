@@ -13,7 +13,8 @@ import {
   ForTag,
   IfTag,
   MacroTag,
-  VariableTag,
+  UnclaimedTag,
+  ExpressionTag,
 } from './tags';
 import { TemplateOptions } from './types';
 
@@ -41,10 +42,11 @@ export class Template {
       BlockTag,
       CallTag,
       CommentTag,
+      ExpressionTag,
       ForTag,
       IfTag,
       MacroTag,
-      VariableTag,
+      UnclaimedTag,
     ]);
   }
 
