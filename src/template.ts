@@ -17,6 +17,7 @@ import {
   ExpressionTag,
 } from './tags';
 import { TemplateOptions } from './types';
+import { RuntimeError } from './runtime-error';
 
 export const defaultOptions: Required<TemplateOptions> = {
   debug: false,
@@ -69,8 +70,8 @@ export class Template {
   } {
     try {
       const { out, smp } = this.parser.parse(template);
-      const func = new Function(CONTEXT, FILTERS, ESCAPE, UTILS, out.value);
-      (func as any).smp = smp;
+      const body = out.value;
+      const func = new Function(CONTEXT, FILTERS, ESCAPE, UTILS, body);
       return {
         __func: this.options.debug ? func : defaultFunc,
         render: (context: object): string => {
@@ -91,19 +92,18 @@ export class Template {
               },
               utils,
             );
-          } catch (error) {
+          } catch (error: any) {
             if (this.options.debug) {
-              console.trace(func);
-              throw error;
+              throw new RuntimeError(error.message, { source: template, error, smp });
             }
           }
 
           return '';
         },
       };
-    } catch (error) {
+    } catch (compilingError) {
       if (this.options.debug) {
-        throw error;
+        throw compilingError;
       }
       return {
         __func: defaultFunc,

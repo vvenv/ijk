@@ -148,9 +148,9 @@ export class IfTag extends Tag {
         identifierRight = `!${identifierRight}`;
       }
     }
-    out.pushLine(
+    smp.addMapping(tag, out.pushLine(
       `${isElif ? '}else if' : 'if'}(${this.normalizeExpression(identifierLeft, operator, identifierRight)}){`,
-    );
+    ));
     this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 

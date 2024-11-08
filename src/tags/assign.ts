@@ -3,6 +3,7 @@ import { Out } from '../out';
 import { Tag } from '../tag';
 import { parseExpression } from '../helpers/parse-expression';
 import { compileExpression } from '../helpers/compile-expression';
+import { SMP } from '../smp';
 
 const ASSIGN = 'assign';
 const ENDASSIGN = 'endassign';
@@ -44,9 +45,10 @@ export class AssignTag extends Tag {
     context: string,
     ast: AST,
     out: Out,
+    smp: SMP,
   ): void | false {
     if (tag.name === ASSIGN) {
-      return this.compileAssign(template, tag as StartTag, context, ast, out);
+      return this.compileAssign(template, tag as StartTag, context, ast, out, smp);
     }
 
     if (tag.name === ENDASSIGN) {
@@ -62,6 +64,7 @@ export class AssignTag extends Tag {
     context: string,
     _ast: AST,
     out: Out,
+    smp: SMP,
   ) {
     const { left, right } = this.parseStatement(tag.statement!);
     const object = compileExpression(
@@ -69,15 +72,17 @@ export class AssignTag extends Tag {
       context,
       right!.filters,
     );
-    out.pushLine(`Object.assign(${context},{`);
+    const lines: string[] = [];
+    lines.push(`Object.assign(${context},{`);
     if (Array.isArray(left.expression)) {
       left.expression.forEach((key) => {
-        out.pushLine(`${key}:${object}.${key},`);
+        lines.push(`${key}:${object}.${key},`);
       });
     } else {
-      out.pushLine(`${left.expression}:${object},`);
+      lines.push(`${left.expression}:${object},`);
     }
-    out.pushLine(`});`);
+    lines.push(`});`);
+    smp.addMapping(tag, out.pushLine(...lines));
   }
 
   private parseStatement(statement: string) {

@@ -32,7 +32,7 @@ export class UnclaimedTag extends Tag {
   }
 
   compile(
-    _template: string,
+    template: string,
     tag: StartTag | EndTag,
     context: string,
     ast: AST,
@@ -41,7 +41,8 @@ export class UnclaimedTag extends Tag {
   ): void | false {
     if (tag.name === UNCLAIMED) {
       return this.compileUnclaimed(
-        (tag as StartTag).statement!,
+        template,
+        tag as StartTag,
         context,
         ast,
         out,
@@ -57,13 +58,13 @@ export class UnclaimedTag extends Tag {
   }
 
   private compileUnclaimed(
-    template: string,
+    _template: string,
+    tag: StartTag,
     _context: string,
     _ast: AST,
     out: Out,
     smp: SMP,
   ) {
-    out.pushVar(`"${template.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/[\n\r]/g, '\\n')}"`);
-    smp.addMapping(/* TODO */);
+    smp.addMapping(tag, out.pushVar(`"${tag.statement!.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/[\n\r]/g, '\\n')}"`));
   }
 }

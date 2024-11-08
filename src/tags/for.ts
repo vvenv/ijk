@@ -105,28 +105,29 @@ export class ForTag extends Tag {
       context,
       right!.filters,
     );
-    out.pushLine(`const o_${affix}=${items};`);
-    out.pushLine(`const a_${affix}=Array.isArray(o_${affix});`);
-    out.pushLine(`const k_${affix}=Object.keys(o_${affix});`);
-    out.pushLine(`const l_${affix}=k_${affix}.length;`);
+    const lines: string[] = [];
+    lines.push(`const o_${affix}=${items};`);
+    lines.push(`const a_${affix}=Array.isArray(o_${affix});`);
+    lines.push(`const k_${affix}=Object.keys(o_${affix});`);
+    lines.push(`const l_${affix}=k_${affix}.length;`);
     if ((tag.next as StartTag).name === ELSE) {
-      out.pushLine(`if(l_${affix}){`);
+      lines.push(`if(l_${affix}){`);
     }
-    out.pushLine(
+    lines.push(
       `for(let i_${affix}=0;i_${affix}<l_${affix};i_${affix}++){`,
       `const ${context}_i_${affix}={`,
       `...${context},`,
     );
     if (Array.isArray(left.expression)) {
       left.expression.forEach((name, index) => {
-        out.pushLine(
+        lines.push(
           `${name}:a_${affix}?o_${affix}[k_${affix}[i_${affix}]][${index}]:${index}===0?k_${affix}[i_${affix}]:o_${affix}[k_${affix}[i_${affix}]],`,
         );
       });
     } else {
-      out.pushLine(`${left.expression}:o_${affix}[k_${affix}[i_${affix}]],`);
+      lines.push(`${left.expression}:o_${affix}[k_${affix}[i_${affix}]],`);
     }
-    out.pushLine(
+    lines.push(
       `loop:{`,
       `index:i_${affix},`,
       `first:i_${affix}===0,`,
@@ -135,6 +136,7 @@ export class ForTag extends Tag {
       `}`,
       `};`,
     );
+    smp.addMapping(tag, out.pushLine(...lines));
     this.parser.compileNodeContent(
       template,
       tag,

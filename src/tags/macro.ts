@@ -120,14 +120,16 @@ export class MacroTag extends Tag {
   ) {
     const affix = `${tag.node.level}_${tag.node.index}`;
     const { name, args } = this.parseStatement(tag.statement!);
-    out.pushLine(`${context}.${name}=(${[...args, '_c'].join(',')})=>{`);
+    const lines: string[] = [];
+    lines.push(`${context}.${name}=(${[...args, '_c'].join(',')})=>{`);
     if (args.length) {
-      out.pushLine(`const ${context}_m_${affix}={`, `...${context},`);
+      lines.push(`const ${context}_m_${affix}={`, `...${context},`);
       args.forEach((param) => {
-        out.pushLine(`${param.replace(/(\w+)=.+/, '$1')},`);
+        lines.push(`${param.replace(/(\w+)=.+/, '$1')},`);
       });
-      out.pushLine(`};`);
+      lines.push(`};`);
     }
+    smp.addMapping(tag, out.pushLine(...lines));
     this.parser.compileNodeContent(
       template,
       tag,
@@ -146,7 +148,7 @@ export class MacroTag extends Tag {
     out: Out,
     smp: SMP,
   ) {
-    out.pushLine(`_c?.();`);
+    smp.addMapping(tag, out.pushLine(`_c?.();`));
     this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 

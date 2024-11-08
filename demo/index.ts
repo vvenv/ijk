@@ -181,7 +181,6 @@ function update() {
         });
     previewEl.innerHTML = result;
   } catch (error: any) {
-    console.log(error.stack);
     console.log(error.details);
   }
 

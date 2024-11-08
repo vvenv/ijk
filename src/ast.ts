@@ -1,20 +1,17 @@
 import { ASTError } from './ast-error';
+import { Location } from './smp';
 import { TemplateOptions } from './types';
 
-export interface EndTag {
+export interface EndTag extends Location {
   name: string;
-  startIndex: number;
-  endIndex: number;
   block: ASTNode;
   prev: StartTag;
   next: null;
 }
 
-export interface StartTag {
+export interface StartTag extends Location {
   name: string;
   statement?: string;
-  startIndex: number;
-  endIndex: number;
   node: ASTNode;
   prev: StartTag | null;
   next: StartTag | EndTag | null;
@@ -63,7 +60,7 @@ export class AST implements ASTNode {
     return this.tags[0]?.children ?? [];
   }
 
-  start(tag: Partial<StartTag>): StartTag {
+  start(tag: Partial<StartTag> & Location): StartTag {
     const { tags } = this.cursor;
 
     const startTag = {
@@ -103,7 +100,7 @@ export class AST implements ASTNode {
     return startTag;
   }
 
-  between(tag: Partial<StartTag>) {
+  between(tag: Partial<StartTag> & Location) {
     const { tags } = this.cursor;
 
     if (!tags.length) {
@@ -130,7 +127,7 @@ export class AST implements ASTNode {
     tags.push(_tag);
   }
 
-  end(tag: Partial<EndTag>) {
+  end(tag: Partial<EndTag> & Location) {
     const { tags } = this.cursor;
 
     if (!tags.length) {
@@ -177,7 +174,7 @@ export class AST implements ASTNode {
     this.cursor = this.cursor.parent ?? this;
   }
 
-  private throw(message: string, ...tags: Partial<StartTag | EndTag>[]) {
+  private throw(message: string, ...tags: Array<Partial<StartTag | EndTag> & Location>) {
     if (this.options.debug) {
       throw new ASTError(message, {
         ast: this,
@@ -193,7 +190,7 @@ export class AST implements ASTNode {
 
   assertFirstTag(
     name: string,
-    tag: Partial<StartTag | EndTag>,
+    tag: Partial<StartTag | EndTag> & Location,
     required = true,
   ) {
     const firstTag = this.cursor.tags.at(0)!;
