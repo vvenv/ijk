@@ -29,9 +29,12 @@ export class Parser {
   }
 
   parse(template: string) {
+    /**
+     * @todo remove template param?
+     */
     const ast = new AST(template, this.options);
     const out = new Out(this.options);
-    const smp = new SMP(template, this.options);
+    const smp = new SMP(this.options);
 
     ast.start({
       name: ROOT,

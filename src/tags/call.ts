@@ -86,7 +86,7 @@ export class CallTag extends Tag {
     smp: SMP,
   ) {
     const { name, args } = this.parseStatement(tag.statement!, context);
-    out.pushLine(`${context}.${name}(${args.join(',')},()=>{`);
+    smp.addMapping(tag,out.pushLine(`${context}.${name}(${args.join(',')},()=>{`));
     this.parser.compileNodeContent(template, tag, context, ast, out, smp);
   }
 

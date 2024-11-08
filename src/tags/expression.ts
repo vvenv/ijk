@@ -42,7 +42,7 @@ export class ExpressionTag extends Tag {
   }
 
   compile(
-    _template: string,
+    template: string,
     tag: StartTag | EndTag,
     context: string,
     ast: AST,
@@ -51,7 +51,8 @@ export class ExpressionTag extends Tag {
   ): void | false {
     if (tag.name === EXPRESSION) {
       return this.compileExpression(
-        (tag as StartTag).statement!,
+        template,
+        tag as StartTag,
         context,
         ast,
         out,
@@ -75,19 +76,19 @@ export class ExpressionTag extends Tag {
   }
 
   private compileExpression(
-    template: string,
+    _template: string,
+    tag: StartTag,
     context: string,
     _ast: AST,
     out: Out,
     smp: SMP,
   ) {
-    if (isLiteral(template)) {
-      out.pushVar(template);
-      smp.addMapping(/* TODO */);
+    const {statement} = tag;
+    if (isLiteral(statement!)) {
+      smp.addMapping(tag, out.pushVar(statement!));
     } else {
-      const { expression, filters } = parseExpression(template);
-
-      out.pushVar(compileExpression(expression, context, filters));
+      const { expression, filters } = parseExpression(statement!);
+      smp.addMapping(tag, out.pushVar(compileExpression(expression, context, filters)));
     }
   }
 }
